@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+body {
+  margin: 0;
+}
+
+
+.grid {
+  display: grid;
+  padding: 1.125%;
+  font-size: 0;
+  grid-template-rows: repeat(3, 31.975vw);
+  grid-template-columns: repeat(3, 33.333333%);
+}
+
+.cell {
+  margin: 3%;
+  background-color: #fea500;
+  border-radius: 6%;
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+      perspective: 1000px;
+    }
+
+    .icon-box {
+      position: absolute;
+    }
+
+    .icon {
+      width: 132px;
+      height: 142px;
+    }
+
+    .icon-first {
+      animation: rotateY1 6s infinite linear;
+    }
+
+    .icon-second {
+      animation: rotateY2 6s infinite linear;
+      transform: rotateY(-180deg);
+      opacity: 0;
+    }
+
+    .icon-second-box {
+      display: block;
+      animation: myScale1 2s infinite linear 1s forwards;
+    }
+
+    /* 负的是顺时钟, 正是逆时针 */
+    @keyframes rotateY1 {
+      0% {
+        transform: rotateY(0);
+        opacity: 1;
+      }
+
+      10% {
+        transform: rotateY(-180deg);
+        opacity: 0;
+      }
+
+      50% {
+        transform: rotateY(-180deg);
+        opacity: 0;
+      }
+
+      60% {
+        transform: rotateY(0deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: rotate(0deg);
+        opacity: 1;
+      }
+    }
+
+    @keyframes rotateY2 {
+      0% {
+        transform: rotateY(-180deg);
+        opacity: 0;
+      }
+
+      10% {
+        transform: rotateY(0deg);
+        opacity: 1;
+      }
+
+      50% {
+        transform: rotateY(0deg);
+        opacity: 1;
+      }
+
+      60% {
+        transform: rotateY(-180deg);
+        opacity: 0;
+      }
+
+      100% {
+        transform: rotate(-180deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes myScale1 {
+      0% {
+        transform: scale(1)
+      }
+
+      50% {
+        transform: scale(0.9)
+      }
+
+      100% {
+        transform: scale(1)
+      }
+    }
+
+    #test {
+      width: 200px;
+      height: 200px;
+      background: red;
+      color: white;
+      animation: rotateY1 10s;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="test">
+    我是一个人
+    好吗？
+
+  </div>
+
+
+  <div class="icon-box">
+    <img class="icon icon-first" src="http://static.eimoney.com/diamonds/mobile/imoney_v6/img/iMoney_newicon.png"
+      alt="">
+  </div>
+  <div class="icon-box">
+    <a href="" class="icon-second-box">
+      <img class="icon icon-second" src=" http://static.eimoney.com/diamonds/mobile/imoney_v6/img/play_btn.png" alt="">
+    </a>
+  </div>
+</body>
+
+</html>

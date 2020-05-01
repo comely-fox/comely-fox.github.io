@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>mogondb 匹配 id 更新其他集合文档 | comely-fox</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    
+    <meta name="description" content="记录日常趣事， 代码。">
+    <link rel="preload" href="/dist/assets/css/0.styles.efc1072c.css" as="style"><link rel="preload" href="/dist/assets/js/app.46b5faa7.js" as="script"><link rel="preload" href="/dist/assets/js/2.fa266c25.js" as="script"><link rel="preload" href="/dist/assets/js/15.d15d4833.js" as="script"><link rel="prefetch" href="/dist/assets/js/10.ac0eea1f.js"><link rel="prefetch" href="/dist/assets/js/11.3611203b.js"><link rel="prefetch" href="/dist/assets/js/12.a0c76928.js"><link rel="prefetch" href="/dist/assets/js/13.3c22bd49.js"><link rel="prefetch" href="/dist/assets/js/14.8d04e00b.js"><link rel="prefetch" href="/dist/assets/js/16.1b12c8ca.js"><link rel="prefetch" href="/dist/assets/js/3.708c18b3.js"><link rel="prefetch" href="/dist/assets/js/4.23883c83.js"><link rel="prefetch" href="/dist/assets/js/5.6c73027f.js"><link rel="prefetch" href="/dist/assets/js/6.2ec56387.js"><link rel="prefetch" href="/dist/assets/js/7.3cb97107.js"><link rel="prefetch" href="/dist/assets/js/8.4e5e8394.js"><link rel="prefetch" href="/dist/assets/js/9.8d5473f8.js">
+    <link rel="stylesheet" href="/dist/assets/css/0.styles.efc1072c.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/dist/" class="home-link router-link-active"><!----> <span class="site-name">comely-fox</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/dist/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Demo Menu" class="dropdown-title"><span class="title">Demo</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dist/demo/" class="nav-link">
+  All
+</a></li><li class="dropdown-item"><!----> <a href="/dist/demo/gridview/" class="nav-link">
+  九宫格
+</a></li><li class="dropdown-item"><!----> <a href="/dist/demo/html-parse/" class="nav-link">
+  简单html解析器
+</a></li><li class="dropdown-item"><!----> <a href="/dist/demo/find-big-file/" class="nav-link">
+  找大文件
+</a></li></ul></div></div><div class="nav-item"><a href="/dist/pages/" class="nav-link">
+  Pages
+</a></div><div class="nav-item"><a href="/dist/about.html" class="nav-link">
+  About
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/dist/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Demo Menu" class="dropdown-title"><span class="title">Demo</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dist/demo/" class="nav-link">
+  All
+</a></li><li class="dropdown-item"><!----> <a href="/dist/demo/gridview/" class="nav-link">
+  九宫格
+</a></li><li class="dropdown-item"><!----> <a href="/dist/demo/html-parse/" class="nav-link">
+  简单html解析器
+</a></li><li class="dropdown-item"><!----> <a href="/dist/demo/find-big-file/" class="nav-link">
+  找大文件
+</a></li></ul></div></div><div class="nav-item"><a href="/dist/pages/" class="nav-link">
+  Pages
+</a></div><div class="nav-item"><a href="/dist/about.html" class="nav-link">
+  About
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>mogondb 匹配 id 更新其他集合文档</span> <!----></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>可以在数据库可视化工具下建立查询语句.</p> <ul><li><p>比如: Navicat Premium 中点击 <img src="/images/navicat_tool_query.png" alt="">
+复制下列代码到查询窗口中即可。</p> <p><strong>注意</strong>： A 集合, 是指你要以某个集体为标准的集合。 id, uid 是要匹配的字段</p></li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code>
+use test<span class="token punctuation">;</span> <span class="token comment">// 使用test数据库， 具体看要自己是哪个数据库</span>
+<span class="token keyword">var</span> c <span class="token operator">=</span> db<span class="token punctuation">.</span><span class="token constant">A</span><span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment">// 查找A集合中所有数据， 得到一个可迭代的对象</span>
+<span class="token keyword">var</span> cs <span class="token operator">=</span> db<span class="token punctuation">.</span><span class="token function">getCollectionNames</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 获取当前数据中所有的集合名称</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span>c<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 循环遍历A集合中的每一条文档</span>
+    <span class="token keyword">var</span> doc <span class="token operator">=</span> c<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">var</span> id <span class="token operator">=</span> doc<span class="token punctuation">.</span>id  <span class="token comment">// 获取A集合中每条文档的id</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> name <span class="token keyword">of</span> cs<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 遍历test数据下的所有集合</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>name <span class="token operator">===</span> <span class="token string">'A'</span><span class="token punctuation">)</span> <span class="token keyword">continue</span><span class="token punctuation">;</span> <span class="token comment">// 过滤掉A集合不更新</span>
+        <span class="token keyword">var</span> ct <span class="token operator">=</span> db<span class="token punctuation">.</span><span class="token function">getCollection</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span>
+        <span class="token comment">// 将A集合中的 user, os, createTime 字段更新进其它集合中</span>
+        ct<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">{</span> uid<span class="token operator">:</span> id <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> $<span class="token keyword">set</span><span class="token operator">:</span> <span class="token punctuation">{</span> user<span class="token operator">:</span> doc<span class="token punctuation">.</span>user<span class="token punctuation">,</span> os<span class="token operator">:</span> doc<span class="token punctuation">.</span>os<span class="token punctuation">,</span> createTime<span class="token operator">:</span> doc<span class="token punctuation">.</span>createTime <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> multi<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">5/1/2020, 9:45:37 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/dist/" class="prev router-link-active">
+        Home
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/dist/assets/js/app.46b5faa7.js" defer></script><script src="/dist/assets/js/2.fa266c25.js" defer></script><script src="/dist/assets/js/15.d15d4833.js" defer></script>
+  </body>
+</html>

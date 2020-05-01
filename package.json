@@ -1,0 +1,19 @@
+{
+  "name": "comely-fox.github.io",
+  "version": "1.0.0",
+  "description": "blog",
+  "main": "main.js",
+  "repository": "https://github.com/comely-fox/comely-fox.github.io.git",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "author": "comely-fox",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "node-sass": "^4.14.0",
+    "sass-loader": "^8.0.2",
+    "vuepress": "^1.4.1"
+  }
+}

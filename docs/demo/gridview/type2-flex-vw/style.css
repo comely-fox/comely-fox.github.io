@@ -1,0 +1,24 @@
+@charset "utf-8";
+
+body {
+  margin: 0;
+}
+
+
+.table {
+  padding: 2.15%;
+  font-size: 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  height: 31.975vw;
+}
+
+.cell {
+  flex-grow: .32;
+  height: 94%;
+  border-radius: 6%;
+  background-color: #fea500;
+}

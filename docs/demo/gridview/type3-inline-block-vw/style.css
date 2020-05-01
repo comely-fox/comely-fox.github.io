@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+body {
+  margin: 0;
+}
+
+.table {
+  padding: 1.125%;
+  font-size: 0;
+}
+
+.cell {
+  display: inline-block;
+  width: 33.333%;
+  height: 31.975vw;
+}
+
+.cell .cell-content {
+  width: 94%;
+  height: 94%;
+  margin: 3%;
+  border-radius: 6%;
+  background-color: #fea500;
+  margin: 3%;
+}

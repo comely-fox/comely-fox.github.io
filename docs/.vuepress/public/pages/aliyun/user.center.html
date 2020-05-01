@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/index.3.css">
+</head>
+
+<body>
+  <div id="container">
+
+    <!-- 文档固定头部 -->
+    <div id="header">
+      <a id="menu" class="icon-menu" href="#"></a>
+      <span class="icon-logo"></span>
+      <div id="center-content">
+        <div class="search-bar">
+          <label for="input-search" class="icon-search"></label>
+          <input type="text" id="input-search" placeholder="搜索">
+        </div>
+      </div>
+
+      <div id="nav-bar">
+        <div class="item"><a href="">工单</a></div>
+        <div class="item"><a href="">备案</a></div>
+        <div class="item"><a href="">费用</a></div>
+        <div class="item"><a href="">企业</a></div>
+        <div class="item"><a href="">支持与服务</a></div>
+        <div class="item"><a class="icon icon-control" href=""></a></div>
+        <div class="item"><a class="icon icon-info" href=""></a></div>
+        <div class="item"><a class="icon icon-cart" href=""></a></div>
+        <div class="item"><a href="">简体中文</a></div>
+        <div class="item"><a class="icon icon-face" href=""></a></div>
+      </div>
+    </div>
+
+    <!-- 文档内容主体 -->
+    <div id="main">
+      <div class="content-container">
+        <!-- 左侧控制面板 -->
+        <div class="cc-shell">
+          <div class="user-panel">
+            <h2 class="title"></h2>
+            <div class="user-face"></div>
+            <div class="username">
+              用户名
+            </div>
+          </div>
+          <div class="cc-shell-content">
+            <div class="ccsc-top-bar">
+              <a href="javascript:" class="link">
+                <span class="icon-return"></span>
+                <span class="text">返回旧版</span>
+              </a>
+            </div>
+            <div class="ccsc-all-menu">
+              <a href="javascript:" class="link">
+                <span class="icon-menu-all"></span>
+                <span class="text">全部菜单项</span>
+                <span class="icon-arrow-right"></span>
+              </a>
+            </div>
+
+            <div class="ccsc-account-overview">
+              <a href="javascript:" class="link active">
+                <span class="text">账户总览</span>
+              </a>
+            </div>
+
+            <div class="ccsc-menu-list">
+              <h3 class="ccsc-menu-list-title">
+                资金管理
+              </h3>
+              <a class="ccsc-menu-list-row" href="javascript:">收支明细</a>
+              <a class="ccsc-menu-list-row" href="javascript:">卡券管理</a>
+            </div>
+
+            <div class="ccsc-menu-list">
+              <h3 class="ccsc-menu-list-title">
+                费用账单
+              </h3>
+              <a class="ccsc-menu-list-row" href="javascript:">费用账单</a>
+            </div>
+
+            <div class="ccsc-menu-list">
+              <h3 class="ccsc-menu-list-title">
+                订单管理
+              </h3>
+              <a class="ccsc-menu-list-row" href="javascript:">我的订单</a>
+              <a class="ccsc-menu-list-row" href="javascript:">续费管理</a>
+            </div>
+
+            <div class="ccsc-menu-list">
+              <h3 class="ccsc-menu-list-title">
+                资源管理
+              </h3>
+              <a class="ccsc-menu-list-row" href="javascript:">资源包</a>
+            </div>
+
+            <div class="ccsc-menu-list">
+              <h3 class="ccsc-menu-list-title">
+                发票管理
+              </h3>
+              <a class="ccsc-menu-list-row" href="javascript:">发票管理</a>
+            </div>
+            <div class="ccsc-menu-list">
+              <h3 class="ccsc-menu-list-title">
+                合同管理
+              </h3>
+            </div>
+
+            <div class="ccsc-menu-list">
+              <h3 class="ccsc-menu-list-title">
+                企业财务
+              </h3>
+              <a class="ccsc-menu-list-row" href="javascript:"></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右侧详情部分 -->
+        <div class="cc-content">
+          <div class="info-bar">
+            <span class="txt">机试题测试页面</span>
+          </div>
+          <div class="detail-container">
+            <div class="detail-block">
+              <div class="db-item first">
+                <div class="db-item-wrap">
+                  <div class="db-item-row title">
+                    账户余额
+                  </div>
+                  <div class="db-item-row money">
+                    <span class="symbol">&yen;</span>
+                    <span class="number">1</span>
+                    <span class="arrearage-btn">欠费 &yen; <em class="arrearage-number">0</em></span>
+                  </div>
+                  <div class="db-item-row btn">
+                    <button class="btn-put-money"></button>
+                    <button class="btn-get-money"></button>
+                  </div>
+                </div>
+              </div>
+              <div class="db-item">
+                <div class="db-item-wrap">
+                  <div class="db-item-row title">
+                    财务提醒
+                  </div>
+                  <div class="db-item-row column">
+                    <div class="item">
+                      <span class="title">可索取发票</span>
+                      <span class="detail-box money">&yen; <em class="number">0</em></span>
+                    </div>
+                    <div class="item">
+                      <span class="title">代金券</span>
+                      <span class="detail-box"><em class="number">0</em>张</span>
+                    </div>
+                  </div>
+                  <div class="db-item-row column">
+                    <div class="item">
+                      <span class="title">可申请合同</span>
+                      <span class="detail-box money"><em class="number">0</em>份</span>
+                    </div>
+                    <div class="item">
+                      <span class="title">资源包</span>
+                      <span class="detail-box"><em class="number">0</em>个</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="db-item">
+                <div class="db-item-wrap">
+                  <div class="db-item-row title">
+                    特办提醒
+                  </div>
+                  <div class="db-item-row column">
+                    <div class="item">
+                      <span class="title">特支付订单</span>
+                      <span class="detail-box money"><em class="number">0</em>个</span>
+                    </div>
+                    <div class="item">
+                      <span class="title">特办工单</span>
+                      <span class="detail-box"><em class="number">0</em>个</span>
+                    </div>
+                  </div>
+                  <div class="db-item-row column">
+                    <div class="item">
+                      <span class="title">特续费</span>
+                      <span class="detail-box renew"><em class="number">0</em>个</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-block strength">
+              <div class="db-item">
+                <div class="db-item-wrap">
+                  <div class="strength-first">
+                    <span class="text">可用额度：&yen; <em class="money-number">1</em></span>
+                    <span class="icon-query"></span>
+                  </div>
+                  <div class="strength-second">
+                    <span class="text">可用额度预警：</span>
+                    <span class="strength-icon"></span>
+                    <span class="icon-query"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="db-item">
+                <div class="db-item-wrap">
+                  <div class="strength-first">
+                    <span class="text">高额消费预警：</span>
+                    <span class="strength-icon"></span>
+                    <span class="icon-query"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="db-item">
+                <div class="db-item-wrap">
+                  <div class="strength-first">
+                    <span class="text">高额消费预警：</span>
+                    <span class="strength-icon"></span>
+                  </div>
+                  <div class="strength-second">
+                    <span class="text">账单数据存储：开通后,对应的每天增量的帐单数据将同步存储到您的指定OSS中</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 统计 -->
+            <div class="detail-block">
+              <div class="chart-box">
+                <div class="chart-box-header">
+                  <h3 class="title">近十二月的消费趋势</h3>
+                  <button class="export-bill">
+                    导出对账单
+                  </button>
+                </div>
+
+                <div class="char-box-canvas">
+
+                </div>
+
+                <strong class="chart-box-note">
+                  注：可开票的消费即现金消费，应付金额-储值卡抵扣-代金券抵扣
+                </strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 联系我们 -->
+        <a href="javscript:" id="contact-us"></a>
+      </div>
+    </div>
+</body>
+
+</html>

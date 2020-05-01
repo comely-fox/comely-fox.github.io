@@ -1,0 +1,2215 @@
+​
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="proma" content="no-cache">
+  <meta http-equiv="cache-control" content="no cache">
+  <meta http-equiv="expires" content="0">
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1.0,minimum-scale=1,maximum-scale=1.0,user-scalable=no">
+  <title>iMoney-苹果试玩平台</title>
+  <link rel="stylesheet" href="//static.eimoney.com/diamonds/mobile/imoney_v6/css/iMoney5.0.css?v=0104667">
+  <style>
+    .installKeyPopupCss .layui-m-layercont {
+      padding: 30px 15px 10px;
+    }
+  </style>
+  <script type="text/javascript">
+    window.contextPath = "/diamonds";
+  </script>
+  <script src="//static.eimoney.com/diamonds/mobile/imoney_v6/js/jquery-3.2.1.min.js?v=0104667"></script>
+  <script src="//static.eimoney.com/diamonds/mobile/imoney_v6/js/layer_mobile/layer.js"></script>
+  <script src="//static.eimoney.com/diamonds/mobile/imoney_v6/js/jquery.cookie.js?v=0104667"></script>
+  <script src="//static.eimoney.com/diamonds/mobile/imoney_v6/crypto/core.js"></script>
+  <script src="//static.eimoney.com/diamonds/mobile/imoney_v6/crypto/hmac.js"></script>
+  <script src="//static.eimoney.com/diamonds/mobile/imoney_v6/crypto/cipher-core.js"></script>
+  <script src="//static.eimoney.com/diamonds/mobile/imoney_v6/crypto/enc-base64.js"></script>
+  <script src="//static.eimoney.com/diamonds/mobile/imoney_v6/crypto/tripledes.js"></script>
+  <script src="//static.eimoney.com/diamonds/mobile/imoney_v6/crypto/mode-ecb.js"></script>
+  <script type="text/javascript">
+    function udidPolyfill(tips) {
+      var iosVersion,
+        img = new Image()
+      img.src = "//static.eimoney.com/diamonds/mobile/imoney_v6/img/im_udid.png"
+      if (navigator.userAgent.match(/os\s+(\d+)/i)) {
+        var regArr = navigator.userAgent.match(/os\s+(\d+)_(\d+)/i)
+        iosVersion = parseInt(regArr[1]) + regArr[2] / 10
+      }
+      layer.open({
+        title: '认证',
+        shadeClose: false,
+        content: tips,
+        btn: ['确认'],
+        yes: function (index) {
+          layer.close(index)
+          if (iosVersion >= 12.2) {
+            layer.open({
+              title: '证书安装',
+              shadeClose: false,
+              content: '<p>认证文件下载完成后，点击去安装</p><img style="margin-top:20px;" width="220" height="40" src ="//static.eimoney.com/diamonds/mobile/imoney_v6/img/im_udid.png"/>',
+              btn: ['去安装', '重新下载'],
+              yes: function () {
+                window.location.href = "https://www.eimoney.com/imoney.mobileprovision?v=0104667"
+              },
+              no: function () {
+                udidPolyfill(tips)
+              }
+            })
+          }
+          window.location.href = "/diamonds/api/auth.mobileconfig"
+        }
+      })
+    }
+
+    function openKey() {
+      var scheme = "";
+      if (!scheme) {
+        scheme = "aylakasec://";
+      }
+      localStorage.setItem("scheme", scheme);
+      location.href = scheme;
+
+
+    }
+
+    var scheme = "";
+    if (scheme && (scheme.indexOf("QuickListens://") < 0 || scheme.indexOf("MusicHiS://") < 0)) {
+      location.href = "//www.eimoney.com/wall";
+    }
+
+    function qyPopup(trust_name) {
+      var time = 5;
+      var timer;
+      if (sessionStorage.getItem('isXrzs')) {
+        sessionStorage.removeItem('isXrzs')
+      }
+      timer = setInterval(function () {
+        var btn1;
+        var addClass;
+        if (time <= 0) {
+          clearInterval(timer);
+          btn1 = '信任助手';
+          addClass = 'qyPopup_style2';
+        } else {
+          btn1 = '信任助手' + time + 's';
+          addClass = 'qyPopup_style1'
+        }
+        layer.open({
+          content: '<div class="install_key">' +
+            '<div class="install_key_title">设置信任助手</div>' +
+            '<div class="install_step">' +
+            '<div style="margin-bottom: 0;"><span>1</span>' +
+            '<p>点击“信任助手”</p>' +
+            '</div>' +
+            '<p style="color: #b9b9b9;margin-left: 30px;font-size: 10px;margin-bottom: 10px;">无法跳转，请打开&nbsp;设置 > 通用 > 设备管理</p>' +
+            '<div style="margin-bottom: 26px;"><span>2</span>信任“' + trust_name + '”</div>' +
+            '<div style="margin-bottom: 0"><span>3</span>' +
+            '<p>点击“打开助手”</p>' +
+            '</div>' +
+            '<p style="color: #b9b9b9;margin-left: 30px;font-size: 10px;margin-bottom: 10px;">打开失败，请返回桌面手动打开</p>' +
+            '<div><span>4</span>如安装失败,请卸载老钥匙后重试</div>' +
+            '</div>' +
+            '</div>',
+          btn: [btn1, '打开助手'],
+          shadeClose: false,
+          yes: function (index) {
+            if (this.className == 'qyPopup_style2') {
+              sessionStorage.setItem('isXrzs', 1);
+              location.href = 'https://www.eimoney.com/imoney.mobileprovision?v=0104667';
+            }
+          },
+          className: addClass,
+          no: function (index) {
+            if (sessionStorage.getItem('isXrzs')) {
+              openKey();
+            } else {
+              layer.open({
+                content: '请先信任助手',
+                time: 1,
+                skin: 'msg'
+              })
+            }
+          },
+        });
+
+        time--
+      }, 1000);
+
+    }
+
+    function gotoInstall(id, url, online, trust_name) {
+      layer.closeAll();
+      $.ajax({
+        url: "/diamonds/open/install?id=" + id
+      });
+      if (online == '0') {
+        qyPopup(trust_name);
+      }
+      location.href = url;
+    }
+
+    function installKeyPopup(data) {
+      var str = '';
+      if (data.online == '0') {
+        str = '<img src=' + data.icon + ' class="install_qy_key_app"/>';
+      } else {
+        str =
+          '<img src="//static.eimoney.com/diamonds/mobile/imoney_v6/img/appStore_icon.png" class="install_key_app_bg"/><img src=' +
+          data.icon + ' class="install_key_app_icon"/><p>' + data.name + '</p>'
+      }
+      layer.open({
+        content: '<div class="install_key">' +
+          '<a href="javascript:layer.closeAll();" class="ui_modal_close"></a>' +
+          '<div class="install_key_title" style="line-height: 25px">下载iMONEY助手——' + data.name + '</div>' +
+          '<div class="install_key_title" style="line-height: 25px">打开立即提现</div>' +
+          '<div class="install_key_subtitle" style="color:#cecece">任务期间需开启助手</div>' +
+          '<div class="install_key_app">' +
+          str +
+          '</div>' +
+          '<div class="modal_button" onclick="gotoInstall(' + data.id + ',\'' + data.url + '\',' + data.online +
+          ',\'' + data.trust_name + '\')">立即下载</div>' +
+          '<div class="install_key_hint" style="padding-bottom: 0">每个人的助手可能不同</div>' +
+          // '<div style="color:#eb4b76; line-height: 23px;">如安装失败,请卸载老钥匙后重试</div>'+
+          '</div>',
+        className: 'installKeyPopupCss',
+        style: 'width: 80%'
+      });
+    }
+
+    function getInstallKeyInfo() {
+      request({
+        Method: "getKeyClientInfo",
+      }, function (data) {
+        if (data.ret == '0') {
+          var data = data.data;
+          if (data.type == 0) {
+            location.href = data.url;
+          } else {
+            installKeyPopup(data)
+          }
+        }
+      }, function () {}, false);
+    }
+
+    function isYK(isAlert) {
+      if ('1' == 1) {
+        if (!isAlert) {
+          getInstallKeyInfo();
+        }
+        return true
+      }
+      return false
+    }
+
+
+    function installPopup() {
+      var index = layer.open({
+        content: '<img src="//static.eimoney.com/diamonds/mobile/imoney_v6/img/iMoneyNewLogoColor.png" style="width: 100px; height:100px;">' +
+          '<p style="font-size: 16px; font-weight:700">任务助手未开启</p>' +
+          '<p style="color:#c6c6c6;margin-bottom:0;margin-top: 10px;">未开启助手，无法保障收益到账</p>' +
+          '<div style="width: 100%;"><button onclick="openKey();" class="modal_button">打开助手</button>' +
+          '<span style="color:#c6c6c6;font-size: 13px;">如遇到问题，<a href="javascript:;" onclick="getInstallKeyInfo()" style="color:#eb486b">请重新下载助手</a>' +
+          '</span></div>',
+      });
+      return index
+    }
+
+    function browserType() {
+      var u = navigator.userAgent;
+      return {
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Adr') > -1, //android终端
+        iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+        iPad: u.indexOf('iPad') > -1, //是否iPad
+        webApp: u.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') > -1, //是否微信 （2015-01-22新增）
+        qq: u.match(/\sQQ/i) !== null, //是否QQ
+        weibo: u.match(/WeiBo/i) == "weibo"
+      };
+    }
+
+    function getQueryString(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) {
+        return unescape(r[2]);
+      }
+      return null;
+    }
+
+    function isDNT(url) {
+      function isLocalStorageSupported() {
+        var testKey = 'test';
+        var storage = window.localStorage;
+        try {
+          storage.setItem(testKey, 'testValue');
+          storage.removeItem(testKey);
+          return true;
+        } catch (error) {
+          return false;
+        }
+      }
+
+      function getIOSVersion() {
+        if (navigator.userAgent.match(/os\s+(\d+)/i)) {
+          return navigator.userAgent.match(/os\s+(\d+)/i)[1] - 0;
+        } else {
+          return 0
+        }
+      }
+
+      if (!isLocalStorageSupported() || (getIOSVersion() > 10 && "" == "1")) {
+        url ? location.href = url : location.href = "traceless";
+      }
+    }
+
+    function bindScroll() {
+      var isChange = false;
+      window.onscroll = function () {
+        //变量t就是滚动条滚动时，到顶部的距离
+        var t = document.documentElement.scrollTop || document.body.scrollTop;
+        if (t >= 40 && !isChange) { //当拖动到距离顶部40px处时，左边导航固定，不随滚动条滚动
+          isChange = true;
+          $(".nav_bar_alpha_color").css("opacity", "1");
+        } else if (t < 40 && isChange) {
+          isChange = false;
+          $(".nav_bar_alpha_color").css("opacity", "0");
+        }
+      }
+    }
+  </script>
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+
+    /* 弹幕 */
+    .barrage {
+      width: 100%;
+      height: 330px;
+      position: absolute;
+      top: 0;
+      overflow: hidden;
+    }
+
+    .barrage div {
+      height: 55px;
+      line-height: 55px;
+      padding: 0 15px 0 10px;
+      border-radius: 28px;
+      background: #fff;
+      opacity: 0.6;
+      font-size: 12px;
+      position: absolute;
+      right: 0;
+      z-index: 1;
+      vertical-align: middle;
+      border: 1px solid #f8f8f8;
+      font-weight: 700;
+      animation: myTranslateX1 10s linear forwards;
+      box-shadow: 10px 10px 30px rgba(141, 141, 141, 0.1);
+      overflow: hidden;
+    }
+
+    .barrage .div0 {
+      top: 10px;
+      animation: myTranslateX1 10s linear forwards;
+    }
+
+    .barrage .div1 {
+      top: 80px;
+      transform: translateX(150%);
+      animation: myTranslateX2 10s linear forwards;
+    }
+
+    .barrage .div2 {
+      top: 150px;
+      animation: myTranslateX1 10s linear forwards;
+    }
+
+    .barrage .div3 {
+      top: 220px;
+      transform: translateX(150%);
+      animation: myTranslateX2 10s linear forwards;
+    }
+
+    @keyframes myTranslateX1 {
+      0% {
+        transform: translateX(100%);
+      }
+
+      100% {
+        transform: translateX(-100vw);
+      }
+    }
+
+    @keyframes myTranslateX2 {
+      0% {
+        transform: translateX(150%);
+      }
+
+      100% {
+        transform: translateX(-100vw);
+      }
+    }
+
+    .barrage div img {
+      width: 41px;
+      height: 41px;
+      vertical-align: middle;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .barrage div span {
+      vertical-align: middle;
+    }
+
+    .barrage-name {
+      display: inline-block;
+      /* width: 110px; */
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .barrage-price {
+      color: #fd386c;
+    }
+
+    .wave {
+      margin-top: -240px;
+    }
+
+    .bottom_hint {
+      text-align: center;
+      color: #fff;
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      display: none;
+    }
+
+    .bottom_hint_text {
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    .get-btn {
+      display: block;
+      margin: 60px auto 0;
+      width: 140px;
+      height: 140px;
+      background: url('//static.eimoney.com/diamonds/mobile/imoney_v6/img/get-btns.png') no-repeat center/140px;
+      vertical-align: middle;
+      font-size: 23px;
+      color: #d2583e;
+      position: relative;
+      font-weight: 700;
+    }
+
+    #openPopup span {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      display: block;
+    }
+
+    .get-btn:active {
+      transform: scale(0.95);
+      opacity: 0.9;
+    }
+
+    .img_icon_box_wrap {
+      height: 201.5px;
+      margin: 30px auto 10px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .img_icon_box {
+      height: 201.5px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .img_icon_box .icon_first,
+    .img_icon_box .icon_second {
+      width: 132px;
+      height: 142px;
+      display: block;
+      z-index: 2;
+      margin: 0 auto;
+    }
+
+    .img_icon_box .imoney_icon {
+      width: 129px;
+      height: 23px;
+      margin: 0 auto;
+      display: block;
+      z-index: 2;
+    }
+
+    .icon_first {
+      animation: rotateY1 6s infinite linear;
+    }
+
+    .icon_second {
+      animation: rotateY2 6s infinite linear;
+      transform: rotateY(-180deg);
+      opacity: 0;
+    }
+
+    .icon_second_link {
+      display: block;
+      animation: myScale1 2s linear 1s infinite forwards;
+    }
+
+    /* .icon_second{
+    	transform: rotateY(-180deg);
+		opacity: 0;
+        animation: myScale1 2s linear 1s infinite forwards;
+    } */
+    .top_hint_first {
+      animation: fade1 5s linear infinite;
+    }
+
+    .top_hint_second {
+      animation: fade2 5s linear infinite;
+      opacity: 0;
+    }
+
+    /* 翻转在背面的时候多停留点时间,  再快速翻转到正面多停留点时间 */
+    @keyframes rotateY1 {
+      0% {
+        transform: rotateY(0deg);
+      }
+
+      10% {
+        transform: rotateY(-180deg);
+        opacity: 0;
+      }
+
+      50% {
+        transform: rotateY(-180deg);
+        opacity: 0;
+      }
+
+      60% {
+        transform: rotateY(0);
+        opacity: 1;
+      }
+
+      100% {
+        transform: rotateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* 翻转在正面与反面的时候多停留段指定时间 */
+    @keyframes rotateY2 {
+      0% {
+        transform: rotateY(-180deg);
+        opacity: 0;
+      }
+
+      10% {
+        transform: rotateY(0);
+        opacity: 1;
+      }
+
+      50% {
+        transform: rotateY(0);
+        opacity: 1;
+      }
+
+      60% {
+        transform: rotateY(-180deg);
+        opacity: 0;
+      }
+
+      100% {
+        transform: rotateY(-180deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fade1 {
+      0% {
+        opacity: 1;
+      }
+
+      10% {
+        opacity: 0;
+      }
+
+      50% {
+        opacity: 0;
+      }
+
+      60% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fade2 {
+      0% {
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      60% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .key_download_base .top_hint {
+      background: #fd386c;
+      box-shadow: 5px 5px 15px rgba(200, 16, 58, 0.6);
+      height: 24px;
+      line-height: 24px;
+      color: #fff;
+      display: inline-block;
+      padding: 0 18px;
+      border-radius: 12px;
+      position: relative;
+      z-index: 2;
+      margin-top: 15px;
+    }
+
+    @keyframes myScale1 {
+      0% {
+        transform: scale(1)
+      }
+
+      50% {
+        transform: scale(0.9)
+      }
+
+      100% {
+        transform: scale(1)
+      }
+    }
+
+    .people-num-box {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      width: 100%;
+    }
+
+    .people-num {
+      text-align: center;
+      color: #fff;
+    }
+
+    .people-num-text {
+      font-size: 13px;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .people-num-imgs {
+      display: inline-block;
+    }
+
+    .people-num-imgs img {
+      float: left;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+
+    .people-num-imgs img:not(:first-child) {
+      margin-left: -10px;
+    }
+
+    .bottom-hint {
+      margin-top: 10px;
+      color: #fff;
+      font-weight: 700;
+      font-size: 16px;
+      width: 100%;
+      text-align: center;
+      display: none;
+    }
+
+    .safari-link {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, .7);
+      z-index: 1000;
+      display: none;
+      text-align: center;
+    }
+
+    .safari-link img {
+      width: 90%;
+      margin-top: 20px;
+    }
+
+    .user-protocal {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      background: #fff;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      display: none;
+      padding: 50px 10px;
+      overflow: auto;
+    }
+
+    .user-protocal-head {
+      width: 100%;
+      height: 50px;
+      position: fixed;
+      top: 0;
+      margin-left: -10px;
+      border-bottom: 0.5px solid #b2b2b2;
+      text-align: center;
+      background: #fff;
+    }
+
+    .return-main {
+      position: absolute;
+      left: 10px;
+      line-height: 50px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #409eff;
+    }
+
+    .user-protocal-title {
+      font-size: 20px;
+      color: #000;
+      line-height: 50px;
+      text-align: center;
+    }
+
+    .user-protocal-item {
+      font-size: 18px;
+      color: #000;
+      margin: 20px 0 5px;
+    }
+
+    .select-icon {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      vertical-align: middle;
+    }
+
+    .select-checked-icon {
+      background: url('//static.eimoney.com/diamonds/mobile/imoney_v6/img/checked.png') no-repeat;
+      background-size: 100%;
+    }
+
+    .select-check-icon {
+      background: url('//static.eimoney.com/diamonds/mobile/imoney_v6/img/check.png') no-repeat;
+      background-size: 100%;
+    }
+
+    .popup {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      /* display: none; */
+    }
+
+    .popup-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 310px;
+      /* height: 421px; */
+      /* padding-top: 196px; */
+      overflow: hidden;
+      -webkit-animation: myZoomIn 0.5s linear both;
+      animation: myZoomIn 0.5s linear both;
+    }
+
+    .popup-box-top {
+      /* padding-top: 60px; */
+      margin-top: 100px;
+      height: 150px;
+      background: #eb496d;
+      position: relative;
+      z-index: 88;
+      border-radius: 25px 25px 0px 0px;
+      position: relative;
+      top: 2px;
+    }
+
+    .popup-box-bottom {
+      height: 165px;
+      background-color: #eb496d;
+      background-image: url('//static.eimoney.com/diamonds/mobile/imoney_v6/img/popup-box-bottom-bg1.png'), url('//static.eimoney.com/diamonds/mobile/imoney_v6/img/popup-box-bottom-bg2.png');
+      background-size: 42px auto, 31px auto;
+      background-repeat: no-repeat, no-repeat;
+      background-position: top right, 5px 100px;
+      position: relative;
+      z-index: 99;
+      border-radius: 0px 0px 10px 10px;
+      padding-top: 30px;
+    }
+
+    .popup-box-bottom::after {
+      content: "";
+      width: 38px;
+      height: 20px;
+      background: #f3ebe3;
+      position: absolute;
+      top: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 0 0 20px 20px;
+    }
+
+    .popup-box-bottom p {
+      text-align: center;
+      color: #fff;
+      line-height: 1;
+      padding-top: 20px;
+    }
+
+    .popup-box-bottom p:last-child a {
+      display: inline-block;
+      vertical-align: middle;
+      text-decoration: underline;
+      margin-left: 5px;
+    }
+
+    .popup-shade {
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7)
+    }
+
+    .popup-get-btn {
+      position: relative;
+      display: block;
+      width: 270px;
+      margin: 0 auto;
+      height: 50px;
+      line-height: 48px;
+      padding: 0px 30px;
+      border-radius: 100px;
+      font-size: 18px;
+      color: #a17408;
+      font-weight: bold;
+      background-image: -webkit-linear-gradient(90deg, rgb(248, 211, 81) 0%, rgb(252, 232, 100) 100%);
+      box-shadow: 0px 10px 30px 0px rgba(249, 218, 87, 0.5);
+      -webkit-transition: all .3s linear;
+      transition: all .3s linear;
+      text-align: center;
+    }
+
+    .popup-packet {
+      position: absolute;
+      top: 180px;
+      left: 0;
+      right: 0;
+      width: 285px;
+      height: 236px;
+      background: #f3ebe3;
+      margin: 0 auto;
+      z-index: 90;
+      padding: 10px 7.5px 0;
+      border-radius: 10px 10px 0 0;
+      -webkit-animation: packetShow 0.5s linear 0.5s forwards;
+      animation: packetShow 0.5s linear 0.5s forwards;
+    }
+
+    @-webkit-keyframes packetShow {
+      0% {
+        top: 205px;
+      }
+
+      100% {
+        top: 40px;
+      }
+    }
+
+    @keyframes packetShow {
+      0% {
+        top: 205px;
+      }
+
+      100% {
+        top: 40px;
+      }
+    }
+
+    @-webkit-keyframes moneyShow {
+      0% {
+        top: 255px;
+      }
+
+      100% {
+        top: 37px;
+      }
+    }
+
+    @keyframes moneyShow {
+      0% {
+        top: 255px;
+      }
+
+      100% {
+        top: 37px;
+      }
+    }
+
+    @-webkit-keyframes myZoomIn {
+      from {
+        opacity: 0;
+        -webkit-transform: translate(-50%, -50%) scale3d(0.3, 0.3, 0.3);
+        transform: translate(-50%, -50%) scale3d(0.3, 0.3, 0.3);
+      }
+
+      100% {
+        opacity: 1;
+        -webkit-transform: translate(-50%, -50%) scale3d(1, 1, 1);
+        transform: translate(-50%, -50%) scale3d(1, 1, 1);
+      }
+    }
+
+    @keyframes myZoomIn {
+      from {
+        opacity: 0;
+        -webkit-transform: translate(-50%, -50%) scale3d(0.3, 0.3, 0.3);
+        transform: translate(-50%, -50%) scale3d(0.3, 0.3, 0.3);
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    .popup-packet-box {
+      border: 1px solid #dba9a6;
+      border-bottom: none;
+      height: 100%;
+      text-align: center;
+    }
+
+    .popup-packet-box p:nth-child(1) {
+      color: #666666;
+      line-height: 1;
+      padding: 24px 0 16px;
+    }
+
+    .popup-packet-box p:nth-child(3) {
+      color: #eb496d;
+      line-height: 1;
+      font-size: 31px;
+      margin-top: 16px;
+    }
+
+    .popup-packet-box input {
+      width: 240px;
+      height: 45px;
+      background: #fff;
+      border: 0;
+      border-radius: 8px;
+      margin: 0 auto;
+      display: block;
+      padding-left: 15px;
+      font-size: 16px;
+    }
+
+    .popup-packet-line {
+      background: url('//static.eimoney.com/diamonds/mobile/imoney_v6/img/popup-box-tag.png') no-repeat center/auto 2px;
+      height: 2px;
+    }
+
+    .user_form_label {
+      position: relative;
+    }
+
+    .user_msg_get {
+      font-size: 14px;
+      color: #888;
+      position: absolute;
+      right: 27px;
+      top: 14px;
+      border-left: 0.5px solid rgba(0, 0, 0, 0.06);
+      padding-left: 10px;
+    }
+
+    .user_msg_get:active {
+      opacity: 0.5;
+    }
+
+    .popup-packet-font {
+      font-size: 17px;
+      /* color: #fc396d; */
+    }
+
+    .popup-box-close {
+      width: 27px;
+      height: 27px;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    .popup-box-close img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .cash {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 999;
+      display: none;
+    }
+
+    .cash-box-close {
+      width: 27px;
+      height: 27px;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    .cash-box-close img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .cash-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 310px;
+      height: 429px;
+      padding-top: 207px;
+      overflow: hidden;
+      -webkit-animation: myZoomIn 0.5s linear both;
+      animation: myZoomIn 0.5s linear both;
+    }
+
+    .cash-box-top {
+      padding-top: 111px;
+      background: #eb496d;
+      position: relative;
+      z-index: 88;
+      border-radius: 25px 25px 0px 0px;
+      position: relative;
+      top: 2px;
+    }
+
+    .cash-box-bottom {
+      height: 120px;
+      background-color: #eb496d;
+      background-image: url('//static.eimoney.com/diamonds/mobile/imoney_v6/img/popup-box-bottom-bg1.png'), url('//static.eimoney.com/diamonds/mobile/imoney_v6/img/popup-box-bottom-bg2.png');
+      background-size: 42px auto, 31px auto;
+      background-repeat: no-repeat, no-repeat;
+      background-position: top right, 5px 85px;
+      position: relative;
+      z-index: 99;
+      border-radius: 0px 0px 10px 10px;
+      padding-top: 30px;
+    }
+
+    .cash-box-bottom::after {
+      content: "";
+      width: 38px;
+      height: 20px;
+      background: #f3ebe3;
+      position: absolute;
+      top: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 0 0 20px 20px;
+    }
+
+    .cash-box-bottom p {
+      text-align: center;
+      color: #fff;
+      line-height: 1;
+      padding-top: 20px;
+    }
+
+    .cash-box-bottom p:last-child a {
+      display: inline-block;
+      vertical-align: middle;
+      text-decoration: underline;
+      margin-left: 5px;
+    }
+
+    .cash-shade {
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7)
+    }
+
+    .cash-get-btn {
+      position: relative;
+      display: block;
+      width: 270px;
+      margin: 0 auto;
+      height: 50px;
+      line-height: 48px;
+      padding: 0px 30px;
+      border-radius: 100px;
+      font-size: 18px;
+      color: #a17408;
+      font-weight: bold;
+      background-image: -webkit-linear-gradient(90deg, rgb(248, 211, 81) 0%, rgb(252, 232, 100) 100%);
+      box-shadow: 0px 10px 30px 0px rgba(249, 218, 87, 0.5);
+      -webkit-transition: all .3s linear;
+      transition: all .3s linear;
+      text-align: center;
+    }
+
+    .cash-packet {
+      position: absolute;
+      top: 255px;
+      left: 0;
+      right: 0;
+      width: 285px;
+      /* height: 164px; */
+      height: 280px;
+      background: #f3ebe3;
+      margin: 0 auto;
+      z-index: 90;
+      padding: 10px 7.5px 0;
+      border-radius: 10px 10px 0 0;
+      -webkit-animation: moneyShow 0.5s linear 0.5s forwards;
+      animation: moneyShow 0.5s linear 0.5s forwards;
+    }
+
+    .cash-packet-box {
+      border: 1px solid #dba9a6;
+      border-bottom: none;
+      height: 100%;
+      text-align: center;
+    }
+
+    .cash-packet-box p:nth-child(1) {
+      color: #eb496d;
+      line-height: 1;
+      padding: 24px 0 16px;
+    }
+
+    .cash-packet-box p:nth-child(3) {
+      color: #eb496d;
+      line-height: 1;
+      font-size: 31px;
+      margin-top: 16px;
+    }
+
+    .cash-packet-box input {
+      width: 240px;
+      height: 45px;
+      background: #fff;
+      border: 0;
+      border-radius: 8px;
+      margin: 0 auto;
+      display: block;
+      padding-left: 15px;
+      font-size: 16px;
+    }
+
+    .cash-packet-line {
+      background: url('//static.eimoney.com/diamonds/mobile/imoney_v6/img/popup-box-tag.png') no-repeat center/auto 2px;
+      height: 2px;
+    }
+
+    .cash-packet-text1 {
+      font-size: 15px;
+      line-height: 15px;
+      margin-top: 24px;
+      font-weight: 600;
+    }
+
+    .cash-packet-text2 {
+      font-size: 13px;
+      line-height: 12px;
+      margin-top: 10px;
+      font-weight: 600;
+    }
+
+    .cash-packet-logo {
+      width: 57px;
+      height: 57px;
+      border-radius: 15px;
+      margin-top: 20px;
+    }
+
+    .cash-box-close {
+      width: 27px;
+      height: 27px;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    .cash-box-close img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    #go_install {
+      -webkit-animation: dangling .35s infinite;
+      animation: dangling .35s infinite;
+    }
+
+    #go_install {
+      -webkit-animation: dangling .35s infinite;
+      animation: dangling .35s infinite;
+    }
+
+    @keyframes dangling {
+      0% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+      }
+
+      50% {
+        -webkit-transform: scale3d(1.08, 1.08, 1.08);
+        transform: scale3d(1.08, 1.08, 1.08);
+      }
+
+      100% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+      }
+    }
+  </style>
+</head>
+
+<body ontouchstart="" class="color_bg">
+  <!-- 站长统计 -->
+  <div style="display: none;">
+    <script src="https://s22.cnzz.com/z_stat.php?id=1271690555&web_id=1271690555" language="JavaScript"></script>
+  </div>
+
+  <section class="key_download_base" style="padding-top:10px">
+    <div class="img_icon_box_wrap">
+      <div class="img_icon_box img_icon_box_first">
+        <img src="//static.eimoney.com/diamonds/mobile/imoney_v6/img/iMoney_newicon.png" class="icon_first">
+        <img src="//static.eimoney.com/diamonds/mobile/imoney_v6/img/imoney_icon_text.png" class="imoney_icon">
+        <p class="top_hint top_hint_first">爱盈利给你发红包啦</p>
+      </div>
+      <div class="img_icon_box img_icon_box_second">
+        <a href="//static.eimoney.com/diamonds/mobile/imoney_v6/video/imoney_wx.mp4" class="icon_second_link">
+          <img src="//static.eimoney.com/diamonds/mobile/imoney_v6/img/play_btn.png" class="icon_second">
+        </a>
+        <img src="//static.eimoney.com/diamonds/mobile/imoney_v6/img/imoney_icon_text.png" class="imoney_icon">
+        <p class="top_hint top_hint_second">领取后即可提现1元</p>
+      </div>
+    </div>
+
+    <a href="javascript:;" class="get-btn" id="openPopup">
+      <span class="get-btn-text-df">立即<br>领取</span>
+    </a>
+    <div class='wave -one'></div>
+    <div class='wave -two'></div>
+    <div class='wave -three'></div>
+  </section>
+
+  <img src="//static.eimoney.com/diamonds/mobile/imoney_v6/img/money_icon1.png"
+    style="position: absolute; width: 67px; top: 380px; left: 8px;" />
+  <img src="//static.eimoney.com/diamonds/mobile/imoney_v6/img/money_icon2.png"
+    style="position: absolute; width: 58px; top: 360px; right: 0" />
+
+  <div class="barrage">
+  </div>
+  <section>
+    <!-- <div class="bottom_hint">
+            <a href="javascript:;" id="go_install" class="task_detail_button" style="width: 85%;">领取红包,立提1元 </a>
+            <p class="bottom_hint_text">下载注册绑定手机号、微信后即可提现</p>
+        </div> -->
+  </section>
+  <!-- <p style="padding-bottom: 10px; position: absolute; top: 10px; right: 5px; z-index:9">
+        <a href="javascript:;" class="nextpage" style="text-decoration: underline; color: #eb496f;padding-right: 10px">跳过</a>
+    </p> -->
+  <section class="popup">
+    <div class="popup-box">
+      <div class="popup-box-top">
+      </div>
+      <div class="popup-box-bottom">
+        <a href="javascript:;" class="popup-get-btn task_detail_button" id="getPacket">立即领取</a>
+        <p><a href="/diamonds/mobile/install" style="color: white;border-bottom: 1px solid white;">我是老用户</a></p>
+        <p><i class="select-icon select-check-icon"></i><a class="open-user-protocal">我同意用户协议</a></p>
+      </div>
+      <div class="popup-packet">
+        <div class="popup-packet-box">
+          <p class="popup-packet-font" style="color: #fc396d">恭喜您获得现金红包</p>
+          <p style="color: #fc396d;margin-top: -13px;">领取后可立即提现</p>
+          <!--<p class="popup-packet-line"></p>-->
+          <p></p>
+          <input type="tel" maxlength="11" onblur="validatePhone(this)" placeholder="请输入手机号码领取红包" id="phone">
+          <div class="user_form_label">
+            <input type="tel" style="  margin-top: 15px;" maxlength="4" onblur="validateCode(this)" placeholder="请输入验证码"
+              id="validateCode">
+            <a onclick="getPhoneVildateCode(this)" href="javascript:;" id="modal_msg_get" class="user_msg_get">获取验证码</a>
+          </div>
+        </div>
+      </div>
+      <a href="javascript:;" class="popup-box-close">
+        <img src="//static.eimoney.com/diamonds/mobile/imoney_v6/img/popup-box-close.png" alt="">
+      </a>
+    </div>
+    <div class="popup-shade"></div>
+  </section>
+
+  <section class="cash">
+    <div class="cash-box">
+      <div class="cash-box-top">
+      </div>
+      <div class="cash-box-bottom">
+        <a href="javascript:;" class="cash-get-btn task_detail_button" id="getCash">下载去提现</a>
+      </div>
+      <div class="cash-packet">
+        <div class="cash-packet-box">
+          <!--<div class="huode">-->
+          <p class="huode">恭喜您获得</p>
+          <p class="cash-packet-line"></p>
+          <p class="yuan"><span class="money"></span>元</p>
+          <!--</div>-->
+          <p class="cash-packet-text1">立即下载APP提现</p>
+          <p class="cash-packet-text2" id="showKeyName"></p>
+          <img id="showImoneyIcon" class="cash-packet-logo" />
+        </div>
+      </div>
+      <a href="javascript:;" class="cash-box-close">
+        <img src="//static.eimoney.com/diamonds/mobile/imoney_v6/img/popup-box-close.png" alt="">
+      </a>
+    </div>
+    <div class="cash-shade"></div>
+  </section>
+
+
+  <section class="people-num-box">
+    <div class="people-num">
+      <p class="people-num-text">已有3383人领到红包</p>
+      <div class="people-num-imgs">
+      </div>
+    </div>
+  </section>
+  <section class="safari-link">
+    <img alt="" class="right-top" src="//static.eimoney.com/diamonds/mobile/imoney_v6/img/safari_link.png">
+  </section>
+  <!--<section class="user-protocal">
+        <div class="user-protocal-head">
+            <span class="return-main">返回</span>
+            <h3 class="user-protocal-title">iMoney平台用户使用协议 </h3>
+        </div>
+        <h4 class="user-protocal-item">1、服务条款的接受</h4>
+        <p>欢迎使用iMoney，iMoney是一款APP试玩平台。使用iMoney的服务之前代表您承诺遵守本服务条款</p>
+        <h4 class="user-protocal-item">2、服务说明 </h4>
+        <p>iMoney通过互联网为用户提供网络服务，包括在线及无线的相关业务。 
+iMoney在提供网络服务时，可能会对部分网络服务收取一定的费用，在此情况下，会在相关页面上做明确的提示。如用户拒绝支付该等费用，则不能使用相关的网络服务。 
+iMoney保留不经事先通知因维修、升级或其它原因暂停本服务任何部分的权利。 
+iMoney所提供的所有服务及以后将提供的服务都将受到本服务条款的约束。</p>
+        <h4 class="user-protocal-item">3、用户的注册义务</h4>
+        <p>为了能使用本服务，您同意以下事项∶依本服务注册提示提供您本人真实、正确、最新及完整的资料（以下简称“登记资料”）；随时更新登记资料，确保其有效性。若您提供任何错误、不实或不完整的资料或者iMoney有理由怀疑资料为错误、不实或不完整的，iMoney有权暂停或终止您的帐号，并拒绝您现在和未来使用本服务之全部或任何部分。</p>
+        <h4 class="user-protocal-item">4、隐私保护 </h4>
+        <p>（1）用户在注册账号或使用本服务的过程中，可能需要填写或提交一些必要的信息，如法律法规、规章规范性文件（以下称“法律法规”）规定的需要填写的身份信息。如用户提交的信息不完整或不符合法律法规的规定，则用户可能无法使用本服务或在使用本服务的过程中受到限制。
+（2）个人隐私信息是指涉及用户个人身份或个人隐私的信息，比如，用户真实姓名、身份证号、手机号码、手机设备识别码、IP地址、用户聊天记录。非个人隐私信息是指用户对本服务的操作状态以及使用习惯等明确且客观反映在iMoney服务器端的基本记录信息、个人隐私信息范围外的其它普通信息，以及用户同意公开的上述隐私信息。
+（3）尊重用户个人隐私信息的私有性是iMoney的一贯制度，iMoney将采取技术措施和其他必要措施，确保用户个人隐私信息安全，防止在本服务中收集的用户个人隐私信息泄露、毁损或丢失。在发生前述情形或者iMoney发现存在发生前述情形的可能时，将及时采取补救措施。
+（4）iMoney未经用户同意不向任何第三方公开、 透露用户个人隐私信息。但以下特定情形除外：
+(a)iMoney根据法律法规规定或有权机关的指示提供用户的个人隐私信息；
+(b)由于用户将其用户密码告知他人或与他人共享注册帐户与密码，由此导致的任何个人信息的泄漏，或其他非因iMoney原因导致的个人隐私信息的泄露； 
+(c)用户自行向第三方公开其个人隐私信息；
+(d)用户与iMoney及合作单位之间就用户个人隐私信息的使用公开达成约定，iMoney因此向合作单位公开用户个人隐私信息；
+(e)任何由于黑客攻击、电脑病毒侵入及其他不可抗力事件导致用户个人隐私信息的泄露。
+（5）用户同意iMoney可在以下事项中使用用户的个人隐私信息：
+(a)iMoney向用户及时发送重要通知，如软件更新、本协议条款的变更；
+(b)iMoney内部进行审计、数据分析和研究等，以改进iMoney的产品、服务和与用户之间的沟通；
+(c)依本协议约定，iMoney管理、审查用户信息及进行处理措施；
+(d)适用法律法规规定的其他事项。除上述事项外，如未取得用户事先同意，iMoney不会将用户个人隐私信息使用于任何其他用途。
+（6）iMoney重视对未成年人个人隐私信息的保护。iMoney将依赖用户提供的个人信息判断用户是否为未成年人。任何 18岁以下的未成年人注册账号或使用本服务应事先取得家长或其法定监护人（以下简称"监护人"）的书面同意。除根据法律法规的规定及有权机关的指示披露外，iMoney不会使用或向任何第三方透露未成年人的聊天记录及其他个人隐私信息。除本协议约定的例外情形外，未经监护人事先同意，iMoney不会使用或向任何第三方透露未成年人的个人隐私信息。
+（7）用户确认，其地理位置信息为非个人隐私信息，用户成功注册“iMoney”账号视为确认授权iMoney提取、公开及使用用户的地理位置信息。用户地理位置信息将作为用户公开资料之一，由iMoney向其他用户公开。
+（8）为了改善iMoney的技术和服务，向用户提供更好的服务体验，iMoney或可会自行收集使用或向第三方提供用户的非个人隐私信息。</p>
+        <h4 class="user-protocal-item">5、用户的帐号、密码和安全性</h4>
+        <p>您一旦注册成功成为用户，您将得到一个密码和帐号。如果您未保管好自己的帐号和密码而对您、iMoney或第三方造成的损害，您将负全部责任。另外，每个用户都要对其帐户中的所有活动和言论负全责。 
+您可随时改变您的密码和图标，也可以结束旧的帐户重开一个新帐户。 
+用户同意若发现任何非法使用用户帐号或安全漏洞的情况，应该立即通告iMoney。</p>
+        <h4 class="user-protocal-item">6、用户行为</h4>
+        <p>用户单独承担发布内容的责任。用户对服务的使用是根据所有适用于服务的地方法律、国家法律和国际法律标准的。用户承诺：
+（1）发布信息或者利用iMoney的服务时必须符合中国有关法规，不得在iMoney的网页上或者利用iMoney的服务制作、复制、发布、传播以下信息：
+(a)反对宪法所确定的基本原则的；
+(b)危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的；
+(c)损害国家荣誉和利益的；
+(d)煽动民族仇恨、民族歧视，破坏民族团结的；
+(e)破坏国家宗教政策，宣扬邪教和封建迷信的；
+(f)散布谣言，扰乱社会秩序，破坏社会稳定的；
+(g)散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；
+(h)侮辱或者诽谤他人，侵害他人合法权益的；
+(i)含有法律、行政法规禁止的其他内容的。
+（2）在iMoney的网页上发布信息或者利用iMoney的服务时还必须符合其它有关国家和地区的法律规定以及国际法的有关规定。
+（3）不利用iMoney的服务从事以下活动：
+(a)未经允许，进入计算机信息网络或者使用计算机信息网络资源的；
+(b)未经允许，对计算机信息网络功能进行删除、修改或者增加的；
+(c)未经允许，对进入计算机信息网络中存储、处理或者传输的数据和应用程序进行删除、修改或者增加的；
+(d)故意制作、传播计算机病毒等破坏性程序的；
+(e)其他危害计算机信息网络安全的行为。
+（4）不以任何方式干扰iMoney的服务，如若违反iMoney设定的用户规则，我们将对违反用户做出相应的惩罚，并保留追究其法律责任的权利。
+(a)使用了越狱（或曾经越狱）手机；
+(b)使用了非官方渠道购买的二手手机；
+(c)使用了自动抢任务工具；
+(d)使用了IP地址切换工具；
+(e)没有按照任务要求完成任务；
+正确的任务流程如下：
+（1）必须通过关键字搜索下载应用；
+（2）允许试玩APP联网；
+（3）打开试玩时间超过任务要求时间；
+（4）按照任务要求完成试玩APP注册；
+(f)使用了非法的手机SIM卡；
+(g)使用了非法的Wi-Fi路由器；
+(h)使用了其他辅助完成任务的工具；
+(i)如果大量徒弟出现了作弊行为，会导致师傅被判定作弊。
+（5）遵守iMoney的所有其它规定和程序。 
+用户需对自己在使用iMoney服务过程中的行为承担法律责任。用户理解，如果iMoney发现其网站传输的信息明显属于上段第(1)条所列内容之一，依据中国法律，iMoney有义务立即停止传输，保存有关记录，向国家有关机关报告，并且删除含有该内容的地址、目录或关闭服务器。若用户的行为不符合以上提到的服务条款，iMoney将作出独立判断立即取消用户服务帐号。 
+（6）如若违反以上条例，造成的一应相关后果将由用户个人承担。</p>
+        <h4 class="user-protocal-item">7、内容的所有权</h4>
+        <p>（1）在本服务条款中，“本服务公开使用区域”系指一般公众可以使用的区域。
+（2）您同意已就您于本服务公开使用区域及本服务其他任何公开使用区域张贴之内容，或包括照片、图形、影音资料或地理位置等内容，授予iMoney全球性、免许可费及非独家的使用权，iMoney可以为了展示、散布及推广张贴前述内容之特定服务目的，将前述内容复制、修改、改写、改编或出版，在您将前述内容放入本服务期间，使用权持续有效；若您将前述内容自本服务中删除，则使用权于删除时终止。
+（3）您同意已就您于本服务其他公开使用区域张贴的其他内容，授予iMoney免许可费、永久有效、不可撤销、非独家及可完全再授权之权利在全球使用、复制、修改、改写、改编、发行、翻译、创造衍生性著作，或将前述内容（部分或全部）加以散布、展示，或放入利用任何现在已知和未来开发出之形式、媒体和科技之其他著作物当中，同时您也同意iMoney将您的相关信息（包括照片、图形、影音资料、地理位置等内容）授权第三方合作伙伴使用，以便您获得更多的增值服务。当您怀疑可能构成侵犯时，您可以向iMoney指出。如果iMoney及其合作伙伴上使用了没有得到您（您是相应内容的拥有者）的许可的内容，您可以联系我们并出示能够证明您的所有权的证明请求移除相应内容。</p>
+        <h4 class="user-protocal-item">8、信息的储存及限制 </h4>
+        <p>您同意关于本服务的使用iMoney有权制订一般措施及限制，包含但不限于本服务将保留的电子邮件讯息、所张贴内容或其他上载内容之最长期间、每个帐号可收发电子邮件讯息的最大数量及可收发的单个消息的大小。通过本服务存储或传送之任何信息、通讯资料和其他内容，如被删除或未予储存，iMoney毋须承担任何责任。您亦同意，长时间未使用的帐号，iMoney有权关闭。您也同意，iMoney有权依其自行之考量，不论通知与否，随时变更这些一般措施及限制。</p>
+        <h4 class="user-protocal-item">9、结束服务</h4>
+        <p>用户或iMoney可随时根据实际情况中断服务。用户若反对任何服务条款的建议或对后来的条款修改有异议，或对iMoney服务不满，用户只有以下的追索权：
+（1）不再使用iMoney服务。
+（2）结束用户使用iMoney服务的资格。
+（3）通告iMoney停止该用户的服务。
+结束用户服务后，用户使用iMoney服务的权利马上中止。从那时起，iMoney不再对用户承担任何义务。</p>
+        <h4 class="user-protocal-item">10、免责声明</h4>
+        <p>用户理解并接受：iMoney不担保服务一定能满足用户的要求，也不担保服务不会受中断，对服务的及时性、安全性、出错发生都不作担保。 
+用户理解并接受：下载或通过iMoney产品服务取得的任何信息资料取决于用户自己，并由其承担系统受损或资料丢失的所有风险和责任。 
+用户理解并接受：iMoney不对其他用户所提供的内容的准确性、时效性或完整性作任何保证，对于因使用这些资料或无法使用这些资料而导致的任何损害，iMoney无须承担法律责任。同时对于使用本网站链接的其他网站或网页而引起的任何损害，iMoney不承担任何法律责任。 
+用户理解并接受：用户以自己的独立判断从事与交友相关的行为，并独立承担可能产生的责任，iMoney不承担任何法律责任。 
+iMoney对直接、间接、偶然、特殊及继起的损害不负责任，这些损害来自：不正当使用产品服务，在网上购买商品或类似服务，在网上进行交易，非法使用服务或用户传送的信息有所变动。 
+iMoney对所有用户自发组织的活动不负责任。</p>
+        <h4 class="user-protocal-item">11、赔偿</h4>
+        <p>由于您通过本服务提供、张贴或传送之内容、您违反本服务条款、或您侵害他人任何权利因而衍生或导致任何第三人提出任何索赔或请求，包括合理的律师费，您同意赔偿iMoney公司并使其免受损害。</p>
+        <h4 class="user-protocal-item">12、服务的修改和终止</h4>
+        <p>iMoney将尽力提供最好的服务并在发生任何修改或者中断服务时及时通知用户，但是iMoney保留以下权利：?
+（1）随时修改或中断服务而不需通知用户的权利。用户接受iMoney行使修改或中断服务的权利，iMoney不需对用户或第三方负责。?
+（2）在必要时修改服务条款而不需通知用户的权利。</p>
+        <h4 class="user-protocal-item">13、法律</h4>
+        <p>用户和iMoney一致同意有关服务条款以及使用iMoney的服务产生的争议交由北京仲裁委员会解决。若有任何服务条款与法律相抵触，那这些条款将按尽可能接近的方法重新解析，而其它条款则保持对用户产生法律效力和影响。</p>
+        <h4 class="user-protocal-item">14、其他 </h4>
+        <p>服务条款最终解释权和修改权归iMoney所有。</p>
+        <p>iMoney将视向用户所提供服务内容之特性,要求用户在注册iMoney提供的有关服务时,遵守特定的条件和条款;如该等条件和条款与以上服务条款有任何不一致之处,则以该等条件和条款为准。</p>
+    </section>-->
+  <div id="ICP" style="color:#fff;font-size: 12px;position:absolute;bottom:5px;left:0;width:100%;text-align:center;">
+  </div>
+
+  <script type="text/javascript">
+    function getIOSVersion() {
+      if (navigator.userAgent.match(/os\s+(\d+)/i)) {
+        return navigator.userAgent.match(/os\s+(\d+)/i)[1] - 0;
+      } else {
+        return 0
+      }
+    }
+
+    if (getIOSVersion() >= 10) {
+      try {
+        window.openDatabase(null, null, null, null);
+      } catch (e) {
+        layer.open({
+          shadeClose: false,
+          content: "请关闭无痕模式",
+          skin: 'msg',
+          time: 3
+        });
+        setTimeout(function () {
+          location.href = "/diamonds/mobile/traceless";
+        }, 1000);
+      }
+    } else {
+      var testKey = 'test';
+      var storage = window.localStorage;
+      try {
+        storage.setItem(testKey, 'testValue');
+        storage.removeItem(testKey);
+      } catch (e) {
+        layer.open({
+          shadeClose: false,
+          content: "请关闭无痕模式",
+          skin: 'msg',
+          time: 3
+        });
+        setTimeout(function () {
+          location.href = "/diamonds/mobile/traceless";
+        }, 1000);
+      }
+    }
+
+
+    var fireDownloadEvent, fireCustomEvent, fireEvent;
+    $(document).ready(function () {
+
+      if (window.location.href.indexOf("7264487") > 0) {
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if (isAndroid) {
+          $("body").hide();
+          $("body").css("background", "#000000")
+          alert("暂不支持安卓设备");
+          window.close();
+          return
+        }
+
+        $.getScript('//i.l.inmobicdn.cn/ifctpads/IFC/pixel/inmobipixel.js', function () {
+          fireCustomEvent("imoney");
+        })
+
+
+        fireEvent = function (eventType, eventName) {
+          var PROPERTY_ID = "f1a775b57f8e491b979ac7543f067634";
+          var PING_SERVER_URL = "https://advertiser.inmobiapis.cn/tpce/v1/events/" + eventType +
+            "?trackingPartner =InMobi";
+          var pageData = {};
+          if (typeof InmobiPixel != "undefined") {
+            console.log(InmobiPixel)
+            window.inmobiPixel = new InmobiPixel();
+            window.inmobiPixel.init({
+              pingServer: PING_SERVER_URL,
+              propertyId: PROPERTY_ID,
+              domain: "eimoney.com"
+            });
+          }
+          window.inmobiPixel.ping(eventName, pageData);
+        }
+        fireCustomEvent = function (eventName) {
+          fireEvent("custom", eventName);
+        }
+        fireDownloadEvent = function () {
+          fireEvent("download", "download");
+        }
+      }
+      if (window.location.href.indexOf("7454192") > 0) {
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if (isAndroid) {
+          $("body").hide();
+          $("body").css("background", "#000000")
+          alert("暂不支持安卓设备");
+          window.close();
+          return
+        }
+
+        if (isiOS) {
+          $(".barrage").hide();
+          $(".people-num-imgs").hide();
+          $(".get-btn-text-df").html("立即<br>下载");
+          $(".top_hint").text("加入爱盈利立即开始赚钱");
+          $(".top_hint").removeClass('top_hint_first top_hint_second');
+          $(".huode").hide();
+          $(".cash-packet-line").hide();
+          $(".yuan").hide()
+          $(".people-num-text").hide()
+          $("#showKeyName").css({
+            "font-size": "13px",
+            "line-height": "12px",
+            "margin-top": "10px",
+            "font-weight": "600",
+            "color": "black"
+          });
+          $(".cash-packet-text1").css("margin-top", "42px");
+          $(".cash-box").css("padding-top", "134px");
+          $(".cash-box").css("height", "364px");
+          $(".cash-get-btn").text("立即下载")
+          $(".get-btn").click(function () {
+            getKeyClientInformation()
+            $(".popup").remove();
+          })
+          if (/Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent)) {
+            $('.safari-link').hide();
+          } else {
+            $('.safari-link').show();
+            $('.safari-link').css("background", "rgba(0,0,0,1)");
+            $('.safari-link').click(function () {
+              e.preventDefault()
+            })
+          }
+        };
+      }
+    })
+  </script>
+  <script>
+    if (window.location.href.indexOf("7256850") > 0) {
+      $(".people-num-box").css("bottom", "40px");
+      $("#ICP").html("北京爱普优邦科技有限公司 <br/> 粤ICP备16040824号")
+    } else {
+      $("#ICP").html("粤ICP备16040824号")
+    }
+    if (window.location.href.indexOf("7264486") > 0) {
+      $.getScript('//interaction.bayimob.com/static/hdggstatistics.js', function () {});
+    }
+    if (window.location.href.indexOf("7264487") > 0) {
+      $.getScript('//i.l.inmobicdn.cn/ifctpads/IFC/pixel/inmobipixel.js', function () {});
+    }
+
+    function getKeyClientInformation() {
+      request({
+        Method: "getKeyClientInfo",
+      }, function (data) {
+        // alert("data.ret "+data.ret);
+        if (data.ret == "0") {
+          // alert("data "+data);
+          var data = data.data;
+          // alert("data.type"+data.type);
+          if (data.type == 0) {
+            location.href = data.url;
+          } else {
+            setLogoAndLink(data)
+          }
+        }
+      }, function () {}, false);
+    }
+
+
+    function setLogoAndLink(data) {
+      $('#showImoneyIcon').attr('src', data.icon);
+      $('#showKeyName').text('您的专属钥匙——' + data.name);
+      $('#getCash').attr('onclick', 'bean(' + data.id + ',\'' + data.url + '\',' + data.online + ',\'' + data
+        .trust_name + '\')');
+      $('.cash').show();
+    }
+
+
+
+    function createYmstat(ym_src) {
+      var ymstat_script = document.createElement('script');
+      var ym_div = document.createElement('div');
+      ym_div.style.display = 'none';
+      ymstat_script.src = ym_src;
+      ym_div.appendChild(ymstat_script);
+      document.body.appendChild(ym_div);
+    }
+    if (getQueryString('erweima') == 1) {
+      //二维码进来
+      $("body").append(
+        '<div> <script src=https://s13.cnzz.com/z_stat.php?id=1274502075&web_id=1274502075"  language="JavaScript"><\/script></div>'
+      )
+    }
+
+    //  //推啊统计
+    //  if(getQueryString('type')=='ta'){
+    //         $('#getCash').attr('data-setting-click','link');
+    //         var tuia_script = document.createElement('script');
+    //         tuia_script.src = '//yun.tuisnake.com/h5-mami/log.js';
+    //         tuia_script.id = 'send_log';
+    //         setTimeout(function(){
+    //             document.body.appendChild(tuia_script);
+    //         },100);
+    //         setTimeout(function(){
+    //             location.href = "/diamonds/mobile/index";
+    //         },1000);
+    //     }
+    if (getQueryString('xxl') == 1) {
+      //友盟统计
+      createYmstat('https://s22.cnzz.com/z_stat.php?id=1274011926&web_id=1274011926');
+      //推啊统计
+      $('#go_install').attr('data-setting-click', 'imoney');
+      var tuia_script = document.createElement('script');
+      tuia_script.src = '//yun.tuisnake.com/h5-mami/log.js';
+      tuia_script.id = 'send_log';
+      setTimeout(function () {
+        document.head.appendChild(tuia_script);
+      }, 100);
+    } else if (getQueryString('type') == 'ta') {
+      $('#getCash').attr('data-setting-click', 'taLink');
+      var tuia_script = document.createElement('script');
+      tuia_script.src = '//yun.tuisnake.com/h5-mami/log.js';
+      tuia_script.id = 'send_log';
+      document.head.appendChild(tuia_script);
+
+    }
+
+    function bean(id, urls, online, name) {
+      //豆盟
+      if (window.location.href.indexOf("7264486") > 0) {
+        // $.getScript('//interaction.bayimob.com/static/hdggstatistics.js',function(){
+        _ai_analysis(['trackEvent', 'a', 'click', 'order']);
+        // });
+      }
+
+      //InMobi Pixel
+      if (window.location.href.indexOf("7264487") > 0) {
+        fireDownloadEvent();
+      }
+
+      //推啊
+      if (window.location.href.indexOf("7264484") > 0) {
+        $('#getCash').attr('data-setting-click', 'taLink');
+        var tuia_script = document.createElement('script');
+        tuia_script.src = '//yun.tuisnake.com/h5-mami/log.js';
+        tuia_script.id = 'send_log';
+        document.head.appendChild(tuia_script);
+      }
+      setTimeout(function () {
+        gotoInstall(id, urls, online, name);
+      }, 1000)
+    }
+    // bean()
+
+
+    var sec = 60;
+    var timer;
+    var button;
+
+    function startTimmer() {
+      sec--;
+      button.innerHTML = sec + "";
+      if (sec == 0) {
+        button.innerHTML = "请输入验证码";
+        button.onclick = click;
+        return;
+      }
+      timer = window.setTimeout(startTimmer, 1000);
+    }
+
+    function stopTimmer() {
+      window.clearTimeout(timer);
+      button.innerHTML = "请输入验证码";
+      button.onclick = click;
+    }
+    var click;
+
+    function getPhoneVildateCode(This) {
+      var phone = document.getElementById("phone").value;
+      if (!phone) {
+        layer.open({
+          content: '请输入手机号码',
+          skin: 'msg',
+          time: 2
+        });
+        return;
+      } else {
+        var myreg = /^[1][3-9][0-9]{9}$/;
+        if (!myreg.test(phone)) {
+          layer.open({
+            content: '请输入正确的手机号格式',
+            skin: 'msg',
+            time: 2
+          });
+          return;
+        }
+      }
+      sec = 60;
+      button = This;
+      click = This.onclick;
+
+      This.onclick = null;
+      startTimmer(This);
+
+      request({
+        Method: "getPhoneRegCode",
+        phone: phone
+      }, function (data) {
+        if (data.ret == "0") {
+          showSendTip();
+        } else {
+          stopTimmer(This);
+          if (data.ret == "401") {
+            layer.open({
+              shadeClose: false,
+              content: "该手机号已被绑定，请使用钥匙进入",
+              skin: 'msg',
+              time: 3
+            });
+            setTimeout(function () {
+              location.href = "/diamonds/mobile/install";
+            }, 1000);
+            return;
+          }
+          layer.open({
+            content: data.retInfo,
+            skin: 'msg',
+            time: 2
+          });
+
+        }
+      }, function () {
+        stopTimmer(This);
+        layer.open({
+          content: '网络异常，手机验证码发送失败！',
+          skin: 'msg',
+          time: 2
+        });
+      });
+
+    }
+
+    function validatePhone() {
+      var phone = document.getElementById("phone").value;
+      if (!phone) {
+        layer.open({
+          content: '请输入手机号码',
+          skin: 'msg',
+          time: 2
+        });
+        return;
+      } else {
+        var myreg = /^[1][3-9][0-9]{9}$/;
+        if (!myreg.test(phone)) {
+          layer.open({
+            content: '请输入正确的手机号格式',
+            skin: 'msg',
+            time: 2
+          });
+          return;
+        }
+      }
+    }
+
+    function validateCode() {
+      var validate = document.getElementById("validateCode").value;
+      if (!validate) {
+        layer.open({
+          content: '请输入验证码',
+          skin: 'msg',
+          time: 2
+        });
+        return;
+      }
+    }
+
+    function showSendTip() {
+      layer.open({
+        style: 'text-align:center;padding:5px;',
+        content: '<img src="//static.eimoney.com/diamonds/mobile/imoney_v6/img/toast_success.png" style="width:60px;height60px;display:block;margin:10px auto;">验证码已发送至您的手机',
+        skin: 'msg',
+        time: 2
+        //2秒后自动关闭
+      });
+    }
+
+    $(function () {
+      var exchangeList = [];
+      var barrage_list = $('.barrage');
+      if (exchangeList.length > 0) {
+        var i = 0;
+
+        function getRandom() {
+          return parseInt(Math.random() * 275);
+        }
+
+
+        function createDom() {
+          var index = i % exchangeList.length;
+          var img_url = exchangeList[index].headimgurl ||
+            '//static.eimoney.com/diamonds/mobile/imoney_v6/img/iMoneyNewLogoColor.jpg'
+          var name = exchangeList[index].nickname || exchangeList[index].phone || ' ';
+          /*var str = 'div'+i%4;*/
+          var _div = '<div data-index="' + i + '" class="div0">' +
+            '<img src="' + img_url + '" alt="">' +
+            '<span class="barrage-name" style="margin-right: 5px">' + name + '</span>领取了' +
+            '<span class="barrage-price">' + exchangeList[index].red_pack + '</span>元红包' +
+            '</div>';
+          barrage_list.append(_div);
+          setTimeout(function () {
+            $('.barrage div').eq(0).remove();
+          }, 10000);
+          i++;
+        }
+        createDom()
+        /*createDom()
+        createDom()
+        createDom()*/
+        setInterval(function () {
+          createDom()
+          /*createDom()
+          createDom()
+          createDom()*/
+        }, 5000)
+      }
+    })
+
+    var browser_type = 0;
+    if (browserType().android) {
+      browser_type = 4;
+    } else if (browserType().iPad) {
+      browser_type = 5;
+    } else if (browserType().iPhone) {
+      browser_type = 6;
+    } else if (browserType().qq) {
+      browser_type = 2;
+    } else if (browserType().weibo) {
+      browser_type = 3;
+    } else if (browserType().weixin) {
+      browser_type = 1;
+    }
+
+    function getClick() {
+      $.ajax({
+        url: '/diamonds/collection/join/btn/click',
+        data: {
+          master_id: '894651069',
+          browser_type: browser_type
+        },
+      });
+    }
+
+    function isWx() {
+      getClick();
+      if (browser_type == 4) {
+        if (window.location.href.indexOf("7236335") > 0 || window.location.href.indexOf("7221731") > 0 || window
+          .location.href.indexOf("7264486") > 0 || window.location.href.indexOf("7264484") > 0 || window.location.href
+          .indexOf("7256850") > 0) {
+          layer.open({
+            title: '提示',
+            content: '暂不支持安卓用户',
+            shadeClose: true,
+            btn: "确定"
+          });
+        } else {
+          layer.open({
+            title: '提示',
+            content: '爱盈利向安卓用户推荐安卓版iMoney',
+            shadeClose: true,
+            btn: "立即前往",
+            yes: function () {
+              location.href = 'https://android.eimoney.com/land.html?promote=' + '723155'
+              //location.href = '';
+            }
+          });
+        }
+        return;
+      }
+      if (getQueryString('xxl') == 1) {
+        setTimeout(function () {
+          countLog.init(function () {
+            sessionStorage.setItem('isXxl', 1);
+            location.href = '/diamonds/mobile/install';
+          })
+        }, 200)
+      } else {
+        setTimeout(function () {
+          location.href = '/diamonds/mobile/install';
+        }, 200)
+      }
+    }
+
+    function weixinTip() {
+      var imgPath = '//static.eimoney.com/diamonds/mobile/imoney_v6/img/imoney_safari_weixin.png';
+      if (browserType().android) {
+        imgPath = '//static.eimoney.com/diamonds/mobile/imoney_v6/img/imoney_android.png';
+      }
+      layer.open({
+        style: 'padding:0px;margin:0px;width:100%;height:100%;border-radius:0px;background-color:rgba(0,0,0,0.7)',
+        content: '<a href="javascript:layer.closeAll();" style="display:block"><img src=' + imgPath +
+          ' style="width:100%;height:100%;"/></a>',
+        shadeClose: true
+      });
+    }
+
+    function qqTip() {
+      var imgPath = '//static.eimoney.com/diamonds/mobile/imoney_v6/img/imoney_safari_qq.png';
+      layer.open({
+        style: 'padding:0px;margin:0px;width:100%;height:100%;border-radius:0px;background-color:rgba(0,0,0,0.7)',
+        content: '<a href="javascript:layer.closeAll();" style="display:block"><img src=' + imgPath +
+          ' style="width:100%;height:100%;"/></a>',
+        shadeClose: true
+      });
+    }
+
+    function weiboTip() {
+      var imgPath = '//static.eimoney.com/diamonds/mobile/imoney_v6/img/imoney_safari_weibo.png';
+      layer.open({
+        style: 'padding:0px;margin:0px;width:100%;height:100%;border-radius:0px;background-color:rgba(0,0,0,0.7)',
+        content: '<a href="javascript:layer.closeAll();" style="display:block"><img src=' + imgPath +
+          ' style="width:100%;height:100%;"/></a>',
+        shadeClose: true
+      });
+    }
+
+    $(function () {
+      // $('.get-btn-text-df').on('click',function(){
+      $('#openPopup').on('click', function () {
+        getClick();
+        if ('1' != 1 && $.cookie('client_no')) {
+          location.href = '/diamonds/mobile/index';
+          return;
+        }
+        if (localStorage.getItem('client_no') != null && localStorage.getItem('uid') != null) {
+          $.cookie('client_no', localStorage.getItem('client_no'), {
+            expires: 100,
+            path: "/"
+          });
+
+          $.cookie('uid', localStorage.getItem('uid'), {
+            expires: 100,
+            path: "/"
+          });
+        }
+        if (getQueryString('xxl') == 1) {
+          createYmstat('https://s22.cnzz.com/z_stat.php?id=1274036085&web_id=1274036085');
+        }
+        if (browser_type == 4) {
+          if (window.location.href.indexOf("7236335") > 0 || window.location.href.indexOf("7221731") > 0 ||
+            window.location.href.indexOf("7264486") > 0 || window.location.href.indexOf("7264484") > 0 || window
+            .location.href.indexOf("7256850") > 0) {
+            layer.open({
+              title: '提示',
+              content: '暂不支持安卓用户',
+              shadeClose: true,
+              btn: "确定"
+            });
+          } else {
+            layer.open({
+              title: '提示',
+              content: '爱盈利向安卓用户推荐安卓版iMoney',
+              shadeClose: true,
+              btn: "立即前往",
+              yes: function () {
+                location.href = 'https://android.eimoney.com/land.html?promote=' + '723155';
+                //location.href = '';
+              }
+            });
+          }
+          return;
+        }
+        var promoteCode = '723155';
+        if (/Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent) || promoteCode ==
+          '7236335' || promoteCode == '7264487') {
+          $('.popup').show();
+        } else {
+          $('.safari-link').show();
+        }
+      })
+      $('.safari-link').click(function () {
+        $(this).hide();
+      })
+      $('.popup-box-close').click(function () {
+        $('.popup').hide();
+      })
+      $('.cash-box-close').click(function () {
+        $('.cash').hide();
+      })
+
+      $('.open-user-protocal').click(function () {
+        window.location.href = '/diamonds/mobile/agreement.html'
+      })
+
+      $('.select-icon').click(function () {
+        if ($(this).attr('class').indexOf('select-check-icon') != -1) {
+          $(this).removeClass('select-check-icon');
+          $(this).addClass('select-checked-icon');
+        } else {
+          $(this).removeClass('select-checked-icon');
+          $(this).addClass('select-check-icon');
+        }
+      })
+
+      $('.return-main').click(function () {
+        $('.user-protocal').hide();
+      })
+      $('#getPacket').click(function () {
+        if ($('.select-icon').attr('class').indexOf('select-checked-icon') != -1) {
+          var phone = document.getElementById("phone").value;
+          if (!phone) {
+            layer.open({
+              content: '请输入手机号码',
+              skin: 'msg',
+              time: 2
+            });
+            return;
+          } else {
+            var myreg = /^[1][3-9][0-9]{9}$/;
+            if (!myreg.test(phone)) {
+              layer.open({
+                content: '请输入正确的手机号格式',
+                skin: 'msg',
+                time: 2
+              });
+              return;
+            }
+          }
+          var validateCode = document.getElementById("validateCode").value;
+          if (!validateCode) {
+            layer.open({
+              content: '请输入验证码',
+              skin: 'msg',
+              time: 2
+            });
+            return;
+          }
+          createUser(phone, validateCode);
+        } else {
+          layer.open({
+            shadeClose: false,
+            content: '请确认勾选了用户协议',
+            skin: 'msg',
+            time: 2
+          });
+        }
+
+      })
+      $('#go_install').click(function () {
+        isWx();
+      })
+
+      /*$('#getCash').click(function(){
+          setTimeout(function(){
+              location.href = "/diamonds/mobile/index";
+          },1000);
+          gotoInstall();
+      })*/
+
+
+
+      $('.nextpage').click(function () {
+
+        if (browserType().weixin) {
+          weixinTip();
+        } else if (browserType().qq) {
+          qqTip();
+        } else if (browserType().weibo) {
+          weiboTip();
+        } else {
+          if (browser_type == 4) {
+            if (window.location.href.indexOf("7236335") > 0 || window.location.href.indexOf("7221731") > 0 ||
+              window.location.href.indexOf("7264486") > 0 || window.location.href.indexOf("7264484") > 0 ||
+              window.location.href.indexOf("7256850") > 0) {
+              layer.open({
+                title: '提示',
+                content: '暂不支持安卓用户',
+                shadeClose: true,
+                btn: "确定"
+              });
+            } else {
+              layer.open({
+                title: '提示',
+                content: '爱盈利向安卓用户推荐安卓版iMoney',
+                shadeClose: true,
+                btn: "立即前往",
+                yes: function () {
+                  location.href = 'https://android.eimoney.com/land.html?promote=' + '723155';
+                  //location.href = '';
+                }
+              });
+            }
+            return;
+          }
+          location.href = '/diamonds/mobile/index';
+        }
+      })
+
+
+      function createUser(phone, validateCode) {
+
+        request({
+          Method: "createUser",
+          phone: phone,
+          code: validateCode,
+          promoter: "894651069",
+        }, function (data) {
+          if (data.ret != "0") {
+            layer.open({
+              shadeClose: false,
+              content: data.retInfo,
+              skin: 'msg',
+              time: 3
+            });
+          } else {
+            if (getQueryString('xxl') == 1) {
+              createYmstat('https://s22.cnzz.com/z_stat.php?id=1274036510&web_id=1274036510');
+            }
+            if (data.data.new_user == 0) {
+              location.href = "/diamonds/mobile/index";
+              return;
+            }
+            localStorage.setItem('client_no', data.data.client_no);
+            localStorage.setItem('uid', data.data.uid);
+            $.cookie('client_no', data.data.client_no, {
+              expires: 100,
+              path: "/"
+            });
+
+            $.cookie('uid', data.data.uid, {
+              expires: 100,
+              path: "/"
+            });
+
+            $('.money').html('<span>' + data.data.red_pack + '</span>');
+            $('.popup').hide();
+
+            // $('.cash').show();
+            getKeyClientInformation();
+          }
+        }, function () {}, false);
+      }
+
+      function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+      }
+
+    });
+
+    function openKey() {
+      var scheme = "";
+      if (!scheme) {
+        scheme = "aylakasec://";
+      }
+      localStorage.setItem("scheme", scheme);
+      location.href = scheme;
+    }
+  </script>
+</body>
+
+</html>

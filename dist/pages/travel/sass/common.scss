@@ -1,0 +1,400 @@
+$main_side: 1070px;  // 轮播图的宽度
+$h_width:1000px; //  头部的宽度
+$h_index1:1200px; //  首页index1的内容宽度
+$h_height: 70px;
+%auto{
+	margin:0 auto;
+}
+
+%clearfix{
+	*zoom:1;
+	&:after,&:before{
+		content: "";
+		display: table;
+	}
+	&:after{
+		clear: both;
+	}
+}
+.loading{
+	background: url(../imgs/loading.gif) no-repeat 50%;
+	z-index: 999;
+	.container-wrap,.page-nav{
+		opacity: 0;
+	}
+}
+html{
+	height:100%;
+}
+.flow{
+	overflow: hidden;
+}
+.container-wrap{
+	position: relative;
+	top:0;
+	transition: 1s;
+}
+.header{
+	position: fixed;
+	z-index: 10;
+	top:0;
+	left:0;
+	width:100%;
+	height:$h_height;
+	background:url(../imgs/header-bg.png);
+	.nav{
+		width:1000px;
+		@extend %auto;
+	}
+	.logo{
+		float: left;
+		width:240px;
+		margin-right: 334px - 240px;
+		height:$h_height;
+		background: url(../imgs/logo.png) no-repeat left center;
+	}
+	.menu{
+		float: left;
+		li{
+			float: left;
+			padding-top: 14px;
+			margin-left:12px;
+		}
+		a{
+			display: block;
+			width:72px;
+			height: 44px;
+			line-height: 44px;
+			text-align: center;
+			font-size:14px;
+			color:#FFF;
+			&:hover,
+			&.focus{
+				border-bottom: 2px solid #F08200;
+			}
+		}
+	}
+}
+.content{
+	background: url(../imgs/index-bg1.jpg) no-repeat 0 50%;
+	overflow: hidden;
+	.wrap{
+		position: relative;
+		max-width: 1200px;
+		height: 100%;
+		@extend %auto;
+		text-align: center;
+		.sign{
+			position: absolute;
+			top:50%;
+			left:50%;
+			width:790px;
+			height: 214px;
+			margin-top:-137px;
+			margin-left:-395px;
+			overflow: hidden;
+			&.active {
+				.title{
+					opacity: 1;
+					transform:scale(1,1);
+					transition-delay:2s;
+				}
+				.detail{
+					opacity: 1;
+					transition-delay:0s;
+				}
+			}
+			// .go-active{
+			// 	.title{
+			// 		opacity: 0;
+			// 		transform:scale(0,0);
+			// 		transition-delay: 0s;
+			// 	}
+			// 	.detail{
+			// 		opacity: 0;
+			// 	}
+			// }
+			&.active{
+				opacity: 1;
+			}
+			.title,.detail{
+				width:100%;
+			}
+			.title{
+				height: 94px;
+				margin-bottom: 40px;
+				opacity: 0;
+				transform:scale(0,0);
+				transition: 1.5s;
+			}
+			.detail{
+				height:64px;
+				opacity: 0;
+				transition: 1.5s;
+			}
+		}
+	}
+	&.index2{
+		background-image:url(../imgs/index-bg2.jpg);
+		.video{
+			display: inline-block;
+			position: absolute;
+			left:50%;
+			top:50%;
+			margin-left:-360px;
+			margin-top: -300px;
+			.title{
+				height: 90px;
+				overflow: hidden;
+			}
+			.about{
+				float: left;
+				font-size:40px;
+				line-height: 90px;
+				color:#FFF;
+			}
+			.speech,.profile{
+				float: right;
+				line-height: 100px;
+				font-size: 24px;
+				color:#FFF;
+			}
+		}
+	}
+	&.index3{
+		background-image:url(../imgs/index-bg3.jpg);
+		.wrap{
+			width:$main_side;
+		}
+		.index3-content{
+			position: absolute;
+			top:50%;
+			left:0;
+			margin-top:-280px;
+			width:100%;
+			height:560px;
+
+			.prev,.next{
+					position: absolute;
+					z-index:3;
+					top:50%;
+					width:23px;
+					height:41px;
+					margin-top:-86px;
+					background:url(../imgs/leftarrow.png) no-repeat left center;
+				}
+				.prev{
+					left:-50px;
+				}
+				.next{
+					right:-50px;
+					transform:rotateY(-180deg);
+				}
+
+			.showcasing{
+				height:383px;
+				@extend .flow;
+				.wrap{
+					position: relative;
+					left:0;
+					width:2190px;
+					max-width: 2190px;
+					transition:.35s;
+				}
+				
+
+			}
+			.title{
+				display: inline-block;
+				height:46px;
+				margin-bottom:80px;
+				font-size:46px;
+			}
+			.pic{
+				float: left;
+				width:280px;
+				margin-right: 50px;
+				font-size:14px;
+				text-indent: 2em;
+				text-align: left;
+				transition:.15s;
+				.img{
+					width:270px;
+					height:202px;
+					border:5px solid #FDE9CE;
+					box-shadow: 0 0 3px rgba(255,255,255,.4);
+				}
+				&.clearMR{
+					margin-right: 0;
+				}
+			}
+
+			.active{
+				width:410px;
+				.img{
+					width:400px;
+					height:279px;
+				}
+			}
+			img{
+				display: block;
+				width:100%;
+				height:100%;
+			}
+			p{
+				line-height: 26px;
+				margin-top: 16px;
+				color:#555;
+			}
+		}
+	}
+	&.index4{
+		background-image: url(../imgs/index-bg4.jpg);
+		.wrap{
+			width:100%;
+			max-width: 100%;
+		}
+		.main{
+			position: absolute;
+			left:0;
+			bottom: 0;
+			width:100%;
+			height:203px;
+			background: rgba(0,0,0,.5);
+		}
+		.cols{
+			width:1107px;
+			height:100%;
+			@extend %auto;
+		}
+		.item{
+			float: left;
+			width:50%;
+			height: 100%;
+		}
+		.img,.text{
+			float: left;
+			img{
+				width:100%;
+				height:100%;
+			}
+		}
+		.img{
+			width:253px;
+			height:100%;
+		}
+		.text{
+			width:300px - 24px;
+			height: 100%;
+			padding:0 12px;
+			text-align: left;
+			h4{
+				margin-top:47px;
+				margin-bottom:10px;
+				font-size: 26px;
+				font-weight: 400;
+			}
+			p{
+				line-height: 20px;
+				font-size: 14px;
+			}
+			a{
+				color:#FFF;
+			}
+			&.fore2{
+				background-image:url(../imgs/ip4-con-bg.png);
+			}
+		}
+	}
+	&.index5{
+		position: relative;
+		background-image:url(../imgs/index-bg5.jpg);
+		.wrap{
+			width:1000px;
+		}
+		a{
+			position: absolute;
+			top:240px;
+			left:-50px;
+			width:600px;
+			height:220px;
+			img{
+				width:100%;
+				height:100%;
+			}
+		}
+		.code{
+			position: absolute;
+			right:110px;
+			bottom:84px;
+			width:110px;
+			height:236px;
+		}
+		.sina,.wexin{
+			position: static;
+			display: block;
+			width:100%;
+			height:40px;
+			background-position: left top;
+			background-repeat: no-repeat;
+		}
+		.sina{
+			background-image: url(../imgs/wb.png);
+		}
+		.wexin{
+			background-image: url(../imgs/wx.png);
+		}
+		.codeExp{
+			height:236px - 80px - 8px;
+			padding: 4px;
+			background-image: url(../imgs/codebg.png);
+			img{
+				width:100%;
+				height:102px;
+			}
+			p{
+				font-size: 14px;
+				text-align: center;
+				color:#FFF;
+			}
+		}
+	}
+	.public-dowm{
+		position: absolute;
+		left:50%;
+		bottom:22px;
+		margin-left: -25px;
+		width:50px;
+		height:53px;
+		background:url(../imgs/godown.png) no-repeat center center;
+		animation:dowm 1s infinite alternate;
+	}
+}
+
+.page-nav{
+	position: fixed;
+	z-index: 99;
+	right:28px;
+	top:50%;
+	margin-top:-54px;
+	a{
+		display: block;
+		width:12px;
+		height:12px;
+		background: #FFF;
+		border-radius:50%;
+		margin-top: 8px;
+
+		&.active{
+			background-color: #f58220;
+		}
+	}
+}
+@keyframes dowm{
+	0%{
+		opacity: 1;
+	}
+	100%{
+		opacity: .5;
+	}
+}

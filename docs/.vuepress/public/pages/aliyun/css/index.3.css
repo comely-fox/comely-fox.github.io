@@ -1,0 +1,362 @@
+#main {
+  background-color: #F3F3F3;
+  background-image: url(../images/bg-index2.png);
+  background-repeat: no-repeat;
+  background-size: 100% 180px;
+  overflow: hidden;
+}
+
+
+#main .content-container {
+  margin: 0 20px;
+  padding-left: 180px;
+}
+
+
+#main .cc-shell,
+#main .cc-content {
+  float: left;
+}
+
+#main .cc-shell {
+  width: 160px;
+
+  margin-left: -180px;
+}
+
+#main .cc-content {
+  width: 100%;
+}
+
+#main .user-panel {
+  height: 100px;
+  background-color: #303539;
+}
+
+#main .user-panel .title {
+  width: 108px;
+  height: 20px;
+  background: url(../images/icon-user-center.png) no-repeat center center;
+  margin: auto;
+}
+
+#main .user-panel .user-face {
+  width: 40px;
+  height: 40px;
+  background: url(../images/icon-face-index2.png) no-repeat center center;
+  margin: 8px auto;
+}
+
+#main .user-panel .username {
+  font-size: 12px;
+  color: white;
+  text-align: center;
+}
+
+
+#main .cc-content .info-bar {
+  height: 101px;
+  color: white;
+}
+
+#main .cc-content .info-bar .txt {
+  position: relative;
+  top: 32px;
+  left: 30px;
+}
+
+#main .cc-shell-content {
+  background-color: #fff;
+}
+
+#main .detail-block {
+  background-color: white;
+  margin-bottom: 18px;
+  box-shadow: 0 1px 0px #EAEAEA;
+  overflow: hidden;
+}
+
+#main .db-item {
+  float: left;
+  width: 33.3333%;
+}
+
+#main .db-item.first {
+  background-color: #FBFBFB;
+}
+
+#main .db-item .db-item-wrap {
+  border-right: 1px solid #F5F5F6;
+}
+
+#main .db-item-wrap {
+  height: 106px;
+  padding: 30px;
+}
+
+#main .db-item-row {
+  margin-bottom: 20px;
+}
+
+#main .db-item-row.title {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+#main .db-item-row.money {
+  margin-bottom: 10px;
+}
+
+#main .db-item-row.money span {
+  color: #FF8A00;
+}
+
+#main .db-item-row.money span.symbol,
+#main .db-item-row.money span.number {
+  font-size: 24px;
+}
+
+#main .db-item-row.money span.symbol {
+  margin-right: 2px;
+}
+
+#main .db-item-row.money * {
+  vertical-align: text-bottom;
+}
+
+#main .db-item-row.money .arrearage-btn {
+  display: inline-block;
+  margin-left: 6px;
+  line-height: 28px;
+  padding: 0 28px 0 10px;
+  background-color: #F5F5F6;
+}
+
+#main .db-item-row.money .arrearage-number {
+  font-style: normal;
+  vertical-align: bottom;
+}
+
+#main .db-item-row.btn {
+  margin-bottom: 30px;
+}
+
+#main .db-item-row.btn .btn-put-money,
+#main .db-item-row.btn .btn-get-money {
+  width: 70px;
+  height: 28px;
+  background: url(../images/btn-put-money.png) no-repeat left top;
+  cursor: pointer;
+}
+
+#main .db-item-row.btn .btn-get-money {
+  margin-left: 10px;
+  background-image: url(../images/btn-get-money.png);
+}
+
+#main .db-item-row.column {
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+#main .db-item-row.column .item {
+  float: left;
+  width: 50%;
+}
+
+#main .db-item-row.column .item .title {
+  color: #73777A;
+}
+
+#main .db-item-row.column .item .detail-box {
+  color: #00C1DE;
+  margin-left: 30px;
+}
+
+#main .db-item-row.column .item .detail-box.money {
+  margin-left: 12px;
+}
+
+#main .db-item-row.column .number {
+  font-style: normal;
+}
+
+#main .db-item-row.column .detail-box.renew {
+  margin-left: 36px;
+}
+
+.strength-first {
+  margin-bottom: 26px;
+  color: #373D41;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.strength-second {
+  color: #73777A;
+  font-size: 12px;
+}
+
+#main .detail-block.strength .db-item-wrap {
+  height: auto;
+}
+
+#main .detail-block.strength .strength-icon {
+  display: inline-block;
+  width: 46px;
+  height: 20px;
+  background: url(../images/icon-btn-strength-normal.png) no-repeat left top;
+  vertical-align: middle;
+}
+
+#main .detail-block.strength .icon-query {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url(../images/icon-btn-query.png) no-repeat left top;
+  vertical-align: middle;
+}
+
+#main .detail-block.strength .text {
+  vertical-align: middle;
+}
+
+#main .detail-block.strength .money-number {
+  font-style: normal;
+}
+
+#main .detail-block .chart-box {
+  position: relative;
+  margin: 30px;
+  height: 328px;
+}
+
+#main .detail-block .chart-box-header {
+  overflow: hidden;
+}
+
+#main .detail-block .chart-box-header .title {
+  float: left;
+  font-weight: bold;
+  font-size: 12px;
+  color: #373D41;
+}
+
+#main .detail-block .chart-box-header .export-bill {
+  float: right;
+  position: relative;
+  top: -2px;
+  color: #00C1DE;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+#main .detail-block .chart-box-note {
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  font-size: 12px;
+  color: #FF8A00;
+  font-weight: 400;
+}
+
+#main .ccsc-top-bar,
+#main .ccsc-all-menu,
+#main .ccsc-account-overview {
+  border-top: 1px solid #EBECEC;
+}
+
+#main #main .ccsc-top-bar .link,
+#main .ccsc-all-menu .link,
+#main .ccsc-account-overview .link {
+  display: block;
+  height: 100%;
+  padding-left: 10px;
+  border-left-width: 2px;
+  border-left-style: solid;
+  border-left-color: transparent;
+}
+
+#main #main .ccsc-top-bar .link.active,
+#main .ccsc-all-menu .link.active,
+#main .ccsc-account-overview .link.active {
+  border-left-color: #00C1DE;
+  color: #00C1E0;
+  background-color: #F5F5F6;
+}
+
+#main .ccsc-top-bar {
+  height: 39px;
+  line-height: 39px;
+}
+
+#main .ccsc-top-bar .icon-return {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url(../images/icon-return-blue.png) no-repeat left center;
+  vertical-align: middle;
+}
+
+#main .ccsc-top-bar .text {
+  margin-left: 2px;
+  vertical-align: middle;
+  color: #33CDE5;
+}
+
+#main .ccsc-all-menu {
+  line-height: 38px;
+  height: 38px;
+}
+
+#main .ccsc-all-menu .icon-menu-all {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin: 0 4px;
+  vertical-align: middle;
+  background: url(../images/icon-menu-all.png) no-repeat left center;
+}
+
+#main .ccsc-all-menu .text {
+  margin-left: 2px;
+  vertical-align: middle;
+}
+
+#main .icon-arrow-right {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-left: 16px;
+  vertical-align: middle;
+  background: url(../images/icon-arrow-right.png) no-repeat left center;
+}
+
+#main .ccsc-account-overview {
+  height: 36px;
+  line-height: 36px;
+}
+
+#main .ccsc-account-overview .text {
+  margin-left: 6px;
+}
+
+#main .ccsc-menu-list {
+  border-top: 1px dashed #D7D8D9;
+  font-size: 12px;
+  padding-bottom: 14px;
+}
+
+#main .ccsc-menu-list-title {
+  padding-left: 12px;
+  height: 32px;
+  line-height: 32px;
+  color: #C3C5C6;
+}
+
+#main .ccsc-menu-list-row {
+  display: block;
+  height: 36px;
+  line-height: 36px;
+  padding-left: 22px;
+}

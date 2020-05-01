@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>简单 html 解析器 | comely-fox</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    
+    <meta name="description" content="记录日常趣事， 代码。">
+    <link rel="preload" href="/dist/assets/css/0.styles.efc1072c.css" as="style"><link rel="preload" href="/dist/assets/js/app.46b5faa7.js" as="script"><link rel="preload" href="/dist/assets/js/2.fa266c25.js" as="script"><link rel="preload" href="/dist/assets/js/8.4e5e8394.js" as="script"><link rel="prefetch" href="/dist/assets/js/10.ac0eea1f.js"><link rel="prefetch" href="/dist/assets/js/11.3611203b.js"><link rel="prefetch" href="/dist/assets/js/12.a0c76928.js"><link rel="prefetch" href="/dist/assets/js/13.3c22bd49.js"><link rel="prefetch" href="/dist/assets/js/14.8d04e00b.js"><link rel="prefetch" href="/dist/assets/js/15.d15d4833.js"><link rel="prefetch" href="/dist/assets/js/16.1b12c8ca.js"><link rel="prefetch" href="/dist/assets/js/3.708c18b3.js"><link rel="prefetch" href="/dist/assets/js/4.23883c83.js"><link rel="prefetch" href="/dist/assets/js/5.6c73027f.js"><link rel="prefetch" href="/dist/assets/js/6.2ec56387.js"><link rel="prefetch" href="/dist/assets/js/7.3cb97107.js"><link rel="prefetch" href="/dist/assets/js/9.8d5473f8.js">
+    <link rel="stylesheet" href="/dist/assets/css/0.styles.efc1072c.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/dist/" class="home-link router-link-active"><!----> <span class="site-name">comely-fox</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/dist/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Demo Menu" class="dropdown-title"><span class="title">Demo</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dist/demo/" class="nav-link router-link-active">
+  All
+</a></li><li class="dropdown-item"><!----> <a href="/dist/demo/gridview/" class="nav-link">
+  九宫格
+</a></li><li class="dropdown-item"><!----> <a href="/dist/demo/html-parse/" class="nav-link router-link-exact-active router-link-active">
+  简单html解析器
+</a></li><li class="dropdown-item"><!----> <a href="/dist/demo/find-big-file/" class="nav-link">
+  找大文件
+</a></li></ul></div></div><div class="nav-item"><a href="/dist/pages/" class="nav-link">
+  Pages
+</a></div><div class="nav-item"><a href="/dist/about.html" class="nav-link">
+  About
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/dist/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Demo Menu" class="dropdown-title"><span class="title">Demo</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dist/demo/" class="nav-link router-link-active">
+  All
+</a></li><li class="dropdown-item"><!----> <a href="/dist/demo/gridview/" class="nav-link">
+  九宫格
+</a></li><li class="dropdown-item"><!----> <a href="/dist/demo/html-parse/" class="nav-link router-link-exact-active router-link-active">
+  简单html解析器
+</a></li><li class="dropdown-item"><!----> <a href="/dist/demo/find-big-file/" class="nav-link">
+  找大文件
+</a></li></ul></div></div><div class="nav-item"><a href="/dist/pages/" class="nav-link">
+  Pages
+</a></div><div class="nav-item"><a href="/dist/about.html" class="nav-link">
+  About
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>简单 html 解析器</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/dist/demo/html-parse/#parsehtml-js" class="sidebar-link">parseHtml.js</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dist/demo/html-parse/#lexer-js" class="sidebar-link">lexer.js</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dist/demo/html-parse/#syntaxer-js" class="sidebar-link">syntaxer.js</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dist/demo/html-parse/#流程图" class="sidebar-link">流程图</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="简单-html-解析器"><a href="#简单-html-解析器" class="header-anchor">#</a> 简单 html 解析器</h1> <ul><li>parseHtml.js 解析 html 文本测试结果</li> <li>lexer.js 将 html 文本加工成 token 对象</li> <li>syntaxer.js 将 token 对象转换为 tree 树</li></ul> <h3 id="预览"><a href="#预览" class="header-anchor">#</a> <a href="/dist/demo/html-parse/view.html">预览</a></h3> <h2 id="parsehtml-js"><a href="#parsehtml-js" class="header-anchor">#</a> parseHtml.js</h2> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">const</span> <span class="token punctuation">{</span> HTMLLexicalParser <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./lexer.js'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> HTMLSyntaticalParser <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./syntaxer.js'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> html <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+  &lt;html id='html'  c=&quot;3&quot;&gt;
+    &lt;head&gt;
+      &lt;title&gt;lexer - html&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+      &lt;figure&gt;
+        &lt;img src=&quot;test.jpg&quot; /&gt;
+        &lt;figcaption&gt;img description&lt;/figcaption&gt;
+      &lt;/figure&gt;
+      &lt;h2&gt;I like the fruit&lt;/h2&gt;
+      &lt;ul&gt;
+        &lt;li&gt;Apple&lt;/li&gt;
+        &lt;li&gt;Orange&lt;/li&gt;
+        &lt;li&gt;Banana&lt;/li&gt;
+        &lt;li&gt;
+          &lt;h3 style=&quot;color: red; background-color: gray;&quot;&gt;Outer&lt;/h3&gt;
+          &lt;ul&gt;
+            &lt;li&gt;Cherry&lt;/li&gt;
+            &lt;li&gt;Grape&lt;/li&gt;
+            &lt;li&gt;Mango&lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/body&gt;
+  &lt;/html&gt;
+</span><span class="token template-punctuation string">`</span></span>
+
+<span class="token keyword">const</span> lexer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HTMLLexicalParser</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> syntaxer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HTMLSyntaticalParser</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+lexer<span class="token punctuation">.</span><span class="token function">readHtml</span><span class="token punctuation">(</span>html<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">output</span><span class="token punctuation">(</span>syntaxer<span class="token punctuation">.</span>receiveToken<span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>syntaxer<span class="token punctuation">.</span><span class="token function">getDomTree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="lexer-js"><a href="#lexer-js" class="header-anchor">#</a> lexer.js</h2> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">const</span> lexer <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">lexer</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span>
+  <span class="token keyword">let</span> tokens <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  <span class="token keyword">let</span> token <span class="token operator">=</span> <span class="token keyword">null</span>
+  <span class="token keyword">let</span> attribute <span class="token operator">=</span> <span class="token keyword">null</span>
+  <span class="token keyword">class</span> <span class="token class-name">HTMLLexicalParser</span> <span class="token punctuation">{</span>
+    <span class="token function">readHtml</span><span class="token punctuation">(</span><span class="token parameter">html</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>readed <span class="token operator">=</span> <span class="token boolean">true</span>
+      <span class="token keyword">let</span> char <span class="token operator">=</span> <span class="token string">''</span>
+      i <span class="token operator">=</span> <span class="token number">0</span>
+      <span class="token keyword">let</span> stateMachine <span class="token operator">=</span> dataAnalyzer
+      <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>char <span class="token operator">=</span> <span class="token function">getInput</span><span class="token punctuation">(</span>html<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        stateMachine <span class="token operator">=</span> <span class="token function">stateMachine</span><span class="token punctuation">(</span>char<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> <span class="token keyword">this</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">output</span><span class="token punctuation">(</span><span class="token parameter">receiveToken<span class="token punctuation">,</span> html</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>readed<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">readHtml</span><span class="token punctuation">(</span>html<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> token <span class="token keyword">of</span> tokens<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">receiveToken</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">function</span> <span class="token function">getInput</span><span class="token punctuation">(</span><span class="token parameter">html</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> html<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">function</span> <span class="token function">dataAnalyzer</span><span class="token punctuation">(</span><span class="token parameter">char</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>char <span class="token operator">===</span> <span class="token string">'&lt;'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> tagOpen
+    <span class="token punctuation">}</span>
+
+    <span class="token function">emitToken</span><span class="token punctuation">(</span>char<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> dataAnalyzer
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">function</span> <span class="token function">tagOpen</span><span class="token punctuation">(</span><span class="token parameter">char</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>char <span class="token operator">===</span> <span class="token string">'/'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> endTagOpen
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token regex">/[a-zA-Z]/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>char<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      token <span class="token operator">=</span> <span class="token punctuation">{</span> tokenStart<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> name<span class="token operator">:</span> char <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> tagName
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 不合法的标签写法</span>
+    <span class="token function">error</span><span class="token punctuation">(</span>char<span class="token punctuation">,</span> i<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">function</span> <span class="token function">tagName</span><span class="token punctuation">(</span><span class="token parameter">char</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 检测到标签节点里的空格, 可能是属性节点</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token regex">/[\t\n\f\s]/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>char<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> beforeAttributeName
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 自封闭标签</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>char <span class="token operator">===</span> <span class="token string">'/'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> selfClosing
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 开始标签结束</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>char <span class="token operator">===</span> <span class="token string">'&gt;'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">emitToken</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span>
+      <span class="token keyword">return</span> dataAnalyzer
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 拼接标签名</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token regex">/[a-zA-Z1-6]/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>char<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      token<span class="token punctuation">.</span>name <span class="token operator">+=</span> char
+      <span class="token keyword">return</span> tagName
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">function</span> <span class="token function">beforeAttributeName</span><span class="token punctuation">(</span><span class="token parameter">char</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 过滤掉标签节点上的空格</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token regex">/[\t\n\f\s]/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>char<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> beforeAttributeName
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 检测到自封闭标签 如: &lt;br /&gt;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>char <span class="token operator">===</span> <span class="token string">'/'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> selfClosing
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 检测开始标签结束</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">'&gt;'</span> <span class="token operator">===</span> char<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">emitToken</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span>
+      <span class="token keyword">return</span> dataAnalyzer
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 检测到属性名</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token regex">/[a-zA-Z-]/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>char<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      attribute <span class="token operator">=</span> <span class="token punctuation">{</span>
+        name<span class="token operator">:</span> char<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        value<span class="token operator">:</span> <span class="token string">''</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> attributeName
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 无效的写法 如： &lt;div &gt;</span>
+    <span class="token function">error</span><span class="token punctuation">(</span>char<span class="token punctuation">,</span> i<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">function</span> <span class="token function">attributeName</span><span class="token punctuation">(</span><span class="token parameter">char</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token regex">/[a-zA-Z0-9-]/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>char<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      attribute<span class="token punctuation">.</span>name <span class="token operator">+=</span> char<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token keyword">return</span> attributeName
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 处理属性值</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>char <span class="token operator">===</span> <span class="token string">'='</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> beforeAttributeValue
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 无效的写法 如： name =</span>
+    <span class="token function">error</span><span class="token punctuation">(</span>char<span class="token punctuation">,</span> i<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">function</span> <span class="token function">beforeAttributeValue</span><span class="token punctuation">(</span><span class="token parameter">char</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 检测到有引号包裹的属性值</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token regex">/['&quot;]/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>char<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token function">attributeValueQuoted</span><span class="token punctuation">(</span>char<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 没有引号包裹的属性值</span>
+    attribute<span class="token punctuation">.</span>value <span class="token operator">+=</span> char
+    <span class="token keyword">return</span> attributeValueNoQuoted
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">function</span> <span class="token function">attributeValueQuoted</span><span class="token punctuation">(</span><span class="token parameter">quote</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token function">step</span><span class="token punctuation">(</span><span class="token parameter">char</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 属性值结束</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>char <span class="token operator">===</span> quote<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        token<span class="token punctuation">[</span>attribute<span class="token punctuation">.</span>name<span class="token punctuation">]</span> <span class="token operator">=</span> attribute<span class="token punctuation">.</span>value
+        <span class="token keyword">return</span> beforeAttributeName
+      <span class="token punctuation">}</span>
+
+      <span class="token comment">// 没有正确的引号匹配</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">'&gt;'</span> <span class="token operator">===</span> char<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">error</span><span class="token punctuation">(</span>char<span class="token punctuation">,</span> i<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+
+      attribute<span class="token punctuation">.</span>value <span class="token operator">+=</span> char
+      <span class="token keyword">return</span> step
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">function</span> <span class="token function">attributeValueNoQuoted</span><span class="token punctuation">(</span><span class="token parameter">char</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 检测到&gt;符号, 认为是结束属性检测</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">'&gt;'</span> <span class="token operator">===</span> char<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      token<span class="token punctuation">[</span>attribute<span class="token punctuation">.</span>name<span class="token punctuation">]</span> <span class="token operator">=</span> attribute<span class="token punctuation">.</span>value
+      <span class="token function">emitToken</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span>
+      <span class="token keyword">return</span> dataAnalyzer
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 开始另外的属性</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token regex">/[\t\n\f\s]/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>char<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      token<span class="token punctuation">[</span>attribute<span class="token punctuation">.</span>name<span class="token punctuation">]</span> <span class="token operator">=</span> attribute<span class="token punctuation">.</span>value
+      <span class="token keyword">return</span> beforeAttributeName
+    <span class="token punctuation">}</span>
+
+    attribute<span class="token punctuation">.</span>value <span class="token operator">+=</span> char
+    <span class="token keyword">return</span> attributeValueNoQuoted
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 自封闭标签处理</span>
+  <span class="token keyword">function</span> <span class="token function">selfClosing</span><span class="token punctuation">(</span><span class="token parameter">char</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 结束</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">'&gt;'</span> <span class="token operator">===</span> char<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">emitToken</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span>
+      <span class="token keyword">const</span> endToken <span class="token operator">=</span> <span class="token punctuation">{</span> tokenEnd<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span>
+      endToken<span class="token punctuation">.</span>name <span class="token operator">=</span> token<span class="token punctuation">.</span>name
+      <span class="token function">emitToken</span><span class="token punctuation">(</span>endToken<span class="token punctuation">)</span>
+      <span class="token keyword">return</span> dataAnalyzer
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">function</span> <span class="token function">endTagOpen</span><span class="token punctuation">(</span><span class="token parameter">char</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token regex">/[a-zA-Z]/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>char<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      token <span class="token operator">=</span> <span class="token punctuation">{</span> tokenEnd<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> name<span class="token operator">:</span> char <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> tagName
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 非法的结束标签</span>
+    <span class="token function">error</span><span class="token punctuation">(</span>char<span class="token punctuation">,</span> i<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">function</span> <span class="token function">emitToken</span><span class="token punctuation">(</span><span class="token parameter">token</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    tokens<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">function</span> <span class="token function">error</span><span class="token punctuation">(</span><span class="token parameter">char<span class="token punctuation">,</span> i</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">SyntaxError</span><span class="token punctuation">(</span><span class="token string">'unexpected char '</span> <span class="token operator">+</span> char <span class="token operator">+</span> <span class="token string">' ;at position: '</span> <span class="token operator">+</span> i<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  lexer<span class="token punctuation">.</span>HTMLLexicalParser <span class="token operator">=</span> HTMLLexicalParser
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span>lexer<span class="token punctuation">)</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> lexer
+</code></pre></div><h2 id="syntaxer-js"><a href="#syntaxer-js" class="header-anchor">#</a> syntaxer.js</h2> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">class</span> <span class="token class-name">HTMLDocument</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>isDocument <span class="token operator">=</span> <span class="token boolean">true</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>childNodes <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Node</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Element</span> <span class="token keyword">extends</span> <span class="token class-name">Node</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">token</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> k <span class="token keyword">in</span> token<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>k <span class="token operator">===</span> <span class="token string">'tokenStart'</span><span class="token punctuation">)</span> <span class="token keyword">continue</span>
+      <span class="token keyword">this</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> token<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>childNodes <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Text</span> <span class="token keyword">extends</span> <span class="token class-name">Node</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>value <span class="token operator">=</span> value <span class="token operator">||</span> <span class="token string">''</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">HTMLSyntaticalParser</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> stack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token keyword">new</span> <span class="token class-name">HTMLDocument</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+  <span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span>
+
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">receiveToken</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">token</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> stackTop <span class="token operator">=</span> stack<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+
+    <span class="token comment">// 文本节点</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> token <span class="token operator">===</span> <span class="token string">'string'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>stackTop <span class="token keyword">instanceof</span> <span class="token class-name">Text</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        stackTop<span class="token punctuation">.</span>value <span class="token operator">+=</span> token
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> txt <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Text</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span>
+        stackTop<span class="token punctuation">.</span>childNodes<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>txt<span class="token punctuation">)</span>
+        i<span class="token operator">++</span>
+        stack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>txt<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>stackTop <span class="token keyword">instanceof</span> <span class="token class-name">Text</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 文本节点出栈</span>
+      i<span class="token operator">--</span>
+      stack<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      stackTop <span class="token operator">=</span> stack<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 元素节点</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>token<span class="token punctuation">.</span>tokenStart<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> e <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Element</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span>
+      <span class="token comment">// 对象的引用类型互相关联</span>
+      stackTop<span class="token punctuation">.</span>childNodes<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+      i<span class="token operator">++</span>
+      stack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 当前节点结束出栈</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>token<span class="token punctuation">.</span>tokenEnd<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      stack<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      i<span class="token operator">--</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">getDomTree</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> stack<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span> HTMLSyntaticalParser <span class="token punctuation">}</span>
+</code></pre></div><h2 id="流程图"><a href="#流程图" class="header-anchor">#</a> 流程图</h2> <p><img src="/distassets/img/html_state.c5763311.png" alt="html状态机"></p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">5/1/2020, 9:45:37 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/dist/demo/" class="prev router-link-active">
+        demo list
+      </a></span> <span class="next"><a href="/dist/demo/find-big-file/">
+        找出大于指定大小的文件
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/dist/assets/js/app.46b5faa7.js" defer></script><script src="/dist/assets/js/2.fa266c25.js" defer></script><script src="/dist/assets/js/8.4e5e8394.js" defer></script>
+  </body>
+</html>

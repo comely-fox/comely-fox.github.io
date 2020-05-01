@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>找出大于指定大小的文件 | comely-fox</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    
+    <meta name="description" content="记录日常趣事， 代码。">
+    <link rel="preload" href="/dist/assets/css/0.styles.efc1072c.css" as="style"><link rel="preload" href="/dist/assets/js/app.46b5faa7.js" as="script"><link rel="preload" href="/dist/assets/js/2.fa266c25.js" as="script"><link rel="preload" href="/dist/assets/js/12.a0c76928.js" as="script"><link rel="prefetch" href="/dist/assets/js/10.ac0eea1f.js"><link rel="prefetch" href="/dist/assets/js/11.3611203b.js"><link rel="prefetch" href="/dist/assets/js/13.3c22bd49.js"><link rel="prefetch" href="/dist/assets/js/14.8d04e00b.js"><link rel="prefetch" href="/dist/assets/js/15.d15d4833.js"><link rel="prefetch" href="/dist/assets/js/16.1b12c8ca.js"><link rel="prefetch" href="/dist/assets/js/3.708c18b3.js"><link rel="prefetch" href="/dist/assets/js/4.23883c83.js"><link rel="prefetch" href="/dist/assets/js/5.6c73027f.js"><link rel="prefetch" href="/dist/assets/js/6.2ec56387.js"><link rel="prefetch" href="/dist/assets/js/7.3cb97107.js"><link rel="prefetch" href="/dist/assets/js/8.4e5e8394.js"><link rel="prefetch" href="/dist/assets/js/9.8d5473f8.js">
+    <link rel="stylesheet" href="/dist/assets/css/0.styles.efc1072c.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/dist/" class="home-link router-link-active"><!----> <span class="site-name">comely-fox</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/dist/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Demo Menu" class="dropdown-title"><span class="title">Demo</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dist/demo/" class="nav-link router-link-active">
+  All
+</a></li><li class="dropdown-item"><!----> <a href="/dist/demo/gridview/" class="nav-link">
+  九宫格
+</a></li><li class="dropdown-item"><!----> <a href="/dist/demo/html-parse/" class="nav-link">
+  简单html解析器
+</a></li><li class="dropdown-item"><!----> <a href="/dist/demo/find-big-file/" class="nav-link router-link-exact-active router-link-active">
+  找大文件
+</a></li></ul></div></div><div class="nav-item"><a href="/dist/pages/" class="nav-link">
+  Pages
+</a></div><div class="nav-item"><a href="/dist/about.html" class="nav-link">
+  About
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/dist/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Demo Menu" class="dropdown-title"><span class="title">Demo</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/dist/demo/" class="nav-link router-link-active">
+  All
+</a></li><li class="dropdown-item"><!----> <a href="/dist/demo/gridview/" class="nav-link">
+  九宫格
+</a></li><li class="dropdown-item"><!----> <a href="/dist/demo/html-parse/" class="nav-link">
+  简单html解析器
+</a></li><li class="dropdown-item"><!----> <a href="/dist/demo/find-big-file/" class="nav-link router-link-exact-active router-link-active">
+  找大文件
+</a></li></ul></div></div><div class="nav-item"><a href="/dist/pages/" class="nav-link">
+  Pages
+</a></div><div class="nav-item"><a href="/dist/about.html" class="nav-link">
+  About
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>找出大于指定大小的文件</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/dist/demo/find-big-file/#main-js" class="sidebar-link">main.js</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dist/demo/find-big-file/#read-js" class="sidebar-link">read.js</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dist/demo/find-big-file/#move-js" class="sidebar-link">move.js</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dist/demo/find-big-file/#filter-js" class="sidebar-link">filter.js</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/dist/demo/find-big-file/#mkdir-js" class="sidebar-link">mkdir.js</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="找出大于指定大小的文件"><a href="#找出大于指定大小的文件" class="header-anchor">#</a> 找出大于指定大小的文件</h1> <p>找出大于指定大小的文件， 并原封不动的移动到 dist 目录下。</p> <ul><li>main.js 入口文件</li> <li>read.js 递归的读取指定文件下的所有文件</li> <li>filter.js 过滤出超出指定大小的文件</li> <li>mkdir.js 建立缺失的文件夹</li> <li>move.js 移动过滤后的文件到 dist 目录下</li></ul> <hr> <p><a href="/findBigFile.zip">下载代码</a></p> <h2 id="main-js"><a href="#main-js" class="header-anchor">#</a> main.js</h2> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">const</span> readFile <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./read'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>readFileSync
+<span class="token keyword">const</span> moveFile <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./move'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>moveFile
+<span class="token keyword">const</span> filterFile <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./filter'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>filterFile
+
+<span class="token keyword">const</span> src <span class="token operator">=</span> <span class="token string">''</span> <span class="token comment">// 要过滤的文件夹</span>
+<span class="token function">readFile</span><span class="token punctuation">(</span>src<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">url</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">filterFile</span><span class="token punctuation">(</span>
+    <span class="token punctuation">(</span><span class="token parameter">path</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 过滤成功后的回调</span>
+      <span class="token comment">// 成功后移动文件到新目录下</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span>
+      <span class="token function">moveFile</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> <span class="token string">'./dest/'</span> <span class="token operator">+</span> path<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    url<span class="token punctuation">.</span>path<span class="token punctuation">,</span> <span class="token comment">// 被过滤的文件</span>
+    <span class="token punctuation">{</span>
+      <span class="token comment">// 过滤的文件类型</span>
+      type<span class="token operator">:</span> <span class="token regex">/\.(?:jpe?g|png|gif|svg)$/</span><span class="token punctuation">,</span>
+      <span class="token comment">// 指定过滤的文件大小</span>
+      size<span class="token operator">:</span> <span class="token number">3</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="read-js"><a href="#read-js" class="header-anchor">#</a> read.js</h2> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">const</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span>
+
+<span class="token comment">/**
+ * 递归的读取某目录下的所有文件, 并采用回调的形式传递
+ * @param {String} dir 要搜索的文件目录
+ * @param {Function} callback 搜索到的所有文件, 并回调出去
+ */</span>
+exports<span class="token punctuation">.</span><span class="token function-variable function">readFileSync</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">readFile</span><span class="token punctuation">(</span><span class="token parameter">dir<span class="token punctuation">,</span> callback</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> list <span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">readdirSync</span><span class="token punctuation">(</span>dir<span class="token punctuation">,</span> callback<span class="token punctuation">)</span>
+  list<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">file</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> path <span class="token operator">=</span> dir <span class="token operator">+</span> <span class="token string">'/'</span> <span class="token operator">+</span> file
+    <span class="token keyword">const</span> stats <span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">statSync</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span>
+    stats<span class="token punctuation">.</span><span class="token function">isFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token operator">?</span> <span class="token function">callback</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+          path<span class="token punctuation">,</span>
+          dir<span class="token punctuation">,</span>
+          filename<span class="token operator">:</span> file<span class="token punctuation">,</span>
+          size<span class="token operator">:</span> stats<span class="token punctuation">.</span>size<span class="token punctuation">,</span>
+          type<span class="token operator">:</span> path<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">lastIndexOf</span><span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token operator">:</span> <span class="token function">readFile</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> callback<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="move-js"><a href="#move-js" class="header-anchor">#</a> move.js</h2> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">const</span> mkdir <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./mkdir'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>mkdirSync
+<span class="token keyword">const</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span>
+
+<span class="token comment">/**
+ *  文件移动, 不会影响原始文件, 依赖于mkdir函数
+ *
+ * @param {Function} from 要移动的文件
+ * @param {String} to 文件移动的路径
+ */</span>
+exports<span class="token punctuation">.</span><span class="token function-variable function">moveFile</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter"><span class="token keyword">from</span><span class="token punctuation">,</span> to</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> dir <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>to<span class="token punctuation">)</span><span class="token punctuation">.</span>dir
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">mkdir</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>to<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> sourceFile <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">)</span>
+    <span class="token keyword">const</span> destPath <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> to<span class="token punctuation">)</span>
+    <span class="token keyword">const</span> readableStream <span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">createReadStream</span><span class="token punctuation">(</span>sourceFile<span class="token punctuation">)</span>
+    <span class="token keyword">const</span> writableStream <span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">createWriteStream</span><span class="token punctuation">(</span>destPath<span class="token punctuation">)</span>
+    readableStream<span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>writableStream<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;Don't have to move&quot;</span> <span class="token operator">+</span> <span class="token string">'\n-------------'</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span>
+  <span class="token punctuation">}</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>to <span class="token operator">+</span> <span class="token string">'\n'</span> <span class="token operator">+</span> <span class="token string">'Move to complete'</span> <span class="token operator">+</span> <span class="token string">'\n-------------'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="filter-js"><a href="#filter-js" class="header-anchor">#</a> filter.js</h2> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> util <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'util'</span><span class="token punctuation">)</span>
+
+<span class="token comment">/**
+ *  文件过滤器
+ *
+ * @param {Function} callback 过滤后合格的文件的回调函数
+ * @param {String} filename 需要过滤的文件
+ * @param {Object} filter {size: 界限, 文件大小超过后需要过滤, type: 要过滤的文件类型}
+ */</span>
+exports<span class="token punctuation">.</span><span class="token function-variable function">filterFile</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>
+  callback<span class="token punctuation">,</span>
+  filename<span class="token punctuation">,</span>
+  filter <span class="token operator">=</span> <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token regex">/\.(jpeg|png|gif|jpg|svg)$/</span><span class="token punctuation">,</span> size<span class="token operator">:</span> <span class="token number">100</span> <span class="token comment">/*100kb*/</span> <span class="token punctuation">}</span>
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> ext <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>filename<span class="token punctuation">)</span><span class="token punctuation">.</span>ext
+  <span class="token keyword">var</span> baseSize <span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">statSync</span><span class="token punctuation">(</span>filename<span class="token punctuation">)</span><span class="token punctuation">.</span>size
+  <span class="token keyword">var</span> pattern <span class="token operator">=</span> util<span class="token punctuation">.</span><span class="token function">isRegExp</span><span class="token punctuation">(</span>filter<span class="token punctuation">.</span>type<span class="token punctuation">)</span>
+    <span class="token operator">?</span> filter<span class="token punctuation">.</span>type
+    <span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">RegExp</span><span class="token punctuation">(</span>filter<span class="token punctuation">.</span>type<span class="token punctuation">)</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>pattern<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>ext<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> filter<span class="token punctuation">.</span>size <span class="token operator">*</span> <span class="token number">1024</span> <span class="token operator">&lt;=</span> baseSize<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">callback</span><span class="token punctuation">(</span>filename<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="mkdir-js"><a href="#mkdir-js" class="header-anchor">#</a> mkdir.js</h2> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">const</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span>
+<span class="token comment">/**
+ * 递归的创建需要的文件目录
+ * @param {String} dir 文件路径
+ */</span>
+exports<span class="token punctuation">.</span><span class="token function-variable function">mkdirSync</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">mkdir</span><span class="token punctuation">(</span><span class="token parameter">dir</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> pathInfo <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>pathInfo<span class="token punctuation">.</span>dir<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">mkdir</span><span class="token punctuation">(</span>pathInfo<span class="token punctuation">.</span>dir<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  fs<span class="token punctuation">.</span><span class="token function">mkdirSync</span><span class="token punctuation">(</span>pathInfo<span class="token punctuation">.</span>dir <span class="token operator">+</span> <span class="token string">'/'</span> <span class="token operator">+</span> pathInfo<span class="token punctuation">.</span>base<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">5/1/2020, 9:45:37 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/dist/demo/" class="prev router-link-active">
+        demo list
+      </a></span> <span class="next"><a href="/dist/demo/find-big-file/" class="router-link-exact-active router-link-active">
+        找出大于指定大小的文件
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/dist/assets/js/app.46b5faa7.js" defer></script><script src="/dist/assets/js/2.fa266c25.js" defer></script><script src="/dist/assets/js/12.a0c76928.js" defer></script>
+  </body>
+</html>
